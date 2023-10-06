@@ -29,7 +29,7 @@
 		</tr>
 		<tr>
 			<td align="left" width="70%">조회수 <%= detailDto.getPost_views() %></td>
-			<td align="center" width="15%" style="border-right:1px solid black;"><%= detailDto.getPost_nickname() %></td>
+			<td align="center" width="15%" style="border-right:1px solid black;"><%= detailDto.getUser_nickname() %></td>
 			<td align="center" width="15%"><%= detailDto.getPost_create_date() %></td>
 		</tr>		
 		<tr>
@@ -47,5 +47,19 @@
 	<input type="button" value="삭제하기" onClick="location='Review_board_delete.jsp?post_id=<%=detailDto.getPost_id() %>'"/>
 	<input type="button" value="게시글 좋아요 하기"/>
 	<input type="button" value="목록" onClick="location='Review_board_list.jsp'"/>
+	
+	<br><br>
+	
+	<h3>댓글 ? 개</h3>
+	<input type="button" value="댓글 달기"/>
+	<table width="80%" align="center">
+		<tr>
+			<td style="border-bottom:1px solid black;">댓글 제목</td>
+		</tr>
+		<tr>
+			<td>댓글 내용</td>
+		</tr>
+	</table>
+	
 </body>
 </html>

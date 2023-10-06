@@ -21,7 +21,8 @@
 		BoardDto detailDto = dao.getReviewDetail(dto);
 	%>
 	<form name="review_board_update" method="post" action="Review_board_updateproc.jsp">		
-		<input type="hidden" name="post_nickname" value="<%=detailDto.getPost_nickname() %>"/>	
+		<input type="hidden" name="post_id" value="<%=detailDto.getPost_id() %>"/>
+		<input type="hidden" name="user_nickname" value="<%=detailDto.getUser_nickname() %>"/>	
 		<input type="text" name="post_title" size="40" value="<%=detailDto.getPost_title() %>"/><br><br>
 		<textarea name="post_content" style="width:80%;height:200px;"><%=detailDto.getPost_content() %></textarea><br><br>
 		<input type="text" size="40" value="사진 추가 (사진은 최대 20장까지 등록 가능합니다)"/><br><br>

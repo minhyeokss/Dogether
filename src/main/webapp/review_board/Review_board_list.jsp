@@ -6,7 +6,7 @@
 <%@ page import="review_boardbean.*" %>
 <%!
 	int totalRecord = 0; // 총 글의 갯수
-	int numPerPage = 2; // 한 페이지 당 보여질 글 갯수
+	int numPerPage = 3; // 한 페이지 당 보여질 글 갯수
 	int totalPage = 0; // 총 페이지 수
 	int nowPage = 0; // 현재 페이지
 	int beginPerPage = 0; // 페이지별 시작 번호
@@ -87,7 +87,7 @@
 			nowBlock = Integer.parseInt(request.getParameter("nowBlock"));
 		
 		beginPerPage = nowPage * numPerPage;
-		totalBlock = nowBlock * pagePerBlock;
+		totalBlock =(int) Math.ceil((double)totalPage / pagePerBlock);
 		
 		for (int i=beginPerPage; i<beginPerPage + numPerPage; i++) {
 			if(i == totalRecord)
@@ -104,7 +104,7 @@
 				<a href="Review_board_detail.jsp?post_id=<%=dto.getPost_id() %>"><h3><%= dto.getPost_title() %></h3></a>
 				<table border="1" width="200px">
 					<tr>
-						<td colspan="2"><%= dto.getPost_nickname()%></td>
+						<td colspan="2"><%= dto.getUser_nickname()%></td>
 					</tr>
 					<tr>
 						<td><%=dto.getPost_create_date() %></td>
@@ -122,19 +122,26 @@
 		
 	</div><br><br>
 	<input type="button" value="게시글 작성하기" onClick="location='Review_board_post.jsp'"/><br>
-	
-	<a href="Review_board_list.jsp?nowPage=<%= pagePerBlock*(nowBlock-1)%>&nowBlock=<%=nowBlock-1%>">이전</a>
-	
 	<%
-		for(int i=0; i<totalPage; i++) {
-			
+		if(nowBlock > 0){
 	%>
-			<a href="Review_board_list.jsp?nowPage=<%=(nowBlock*pagePerBlock)+i%>&nowBlock=<%=nowBlock%>"><%=i +1 %></a>
+			<a href="Review_board_list.jsp?nowPage=<%= pagePerBlock*(nowBlock-1)%>&nowBlock=<%=nowBlock-1%>">이전</a>
+	<%
+		}
+	
+		for(int i=0; i<pagePerBlock; i++) {
+			if((nowBlock* pagePerBlock) + i == totalPage)
+				break;
+	%>
+			<a href="Review_board_list.jsp?nowPage=<%=(nowBlock*pagePerBlock)+i%>&nowBlock=<%=nowBlock%>"><%=(nowBlock*pagePerBlock)+1 +i %></a>
+	<%
+		}
+		
+		if(nowBlock + 1 <totalBlock){
+	%>
+			<a href="Review_board_list.jsp?nowPage=<%=pagePerBlock*(nowBlock+1)%>&nowBlock=<%=nowBlock+1%>">다음</a>
 	<%
 		}
 	%>
-	
-	<a href="Review_board_list.jsp?nowPage=">다음</a>
-	
 </body>
 </html>
