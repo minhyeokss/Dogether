@@ -12,9 +12,9 @@
 <body>
     <%
     request.setCharacterEncoding("UTF-8");
-    String id = (String) session.getAttribute("user_id");
+    String id = (String) session.getAttribute("sessionID");
     if (id == null) {
-        response.sendRedirect("Login.jsp");
+        response.sendRedirect("login.jsp");
     } else {
         try {
             userBean = dao.getUser(id);
@@ -61,6 +61,7 @@
     %>
     <hr>
 
-    <input type="button" value="뒤로가기" onclick="location.href='main.jsp'">
+    <input type="button" value="뒤로가기" onclick="location.href='../../index.jsp'">
+    <input type="button" value="회원탈퇴" onclick="location.href='resign.jsp'"/>
 </body>
 </html>

@@ -12,7 +12,8 @@
 <input type="button" value="회원가입" onclick="location.href='user/view/signUp.jsp'">
 <input type="button" value="비밀번호변경" onclick="location.href='user/view/changePw.jsp'">
 <input type="button" value="로그아웃" onclick="location.href='user/proc/logoutProc.jsp'"/>
+<input type="button" value="내 정보 조회" onclick="location.href='user/view/myInfo.jsp'"/>
 <% session = request.getSession(); %>
-<% System.out.println(session.getAttribute("SessionID")); %>
+<% System.out.println(session.getAttribute("sessionID")); %>
 </body>
 </html>
