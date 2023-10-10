@@ -1,7 +1,8 @@
-<!-- JavaBean ¹æ½Ä -->
+<!-- JavaBean ë°©ì‹ -->
 
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ page import="user.*" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,20 +10,27 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>ÈÄ±â °Ô½ÃÆÇ</h1>
+<jsp:useBean id="dto" class="user.UserBean"/>
+<jsp:useBean id="dao" class="user.UserDAO"/>
+<%
+	String user_id = (String)session.getAttribute("sessionID");
+	
+	UserBean user = (UserBean)dao.getUser(user_id);
+	String user_nickname = user.getUser_nickname();
+%>
+	<h1>í›„ê¸° ê²Œì‹œíŒ</h1>
 	<form name="review_board_post" method="post" action="Review_board_postproc.jsp">
 	
-		ÀÓ½Ã user_id/nickname ÀÔ·Â°ª ¹Ş±â<br>
-		<input type="text" name="user_id" placeholder="user_id ÀÓ½Ã"/><br>
-		<input type="text" name="user_nickname" placeholder="nickname ÀÓ½Ã"/><br><br>
+		<!--  user_id ê°’ ë„˜ê¸°ê¸° -->
+		<input type="hidden" name="user_id" value="<%=user_id%>"/><br>
+		<input type="hidden" name="user_nickname" value="<%=user_nickname%>"/>
 	
-	
-		<input type="text" name="post_title" size="40" placeholder="Á¦¸ñÀ» ÀÔ·ÂÇØÁÖ¼¼¿ä"/><br><br>
-		<textarea placeholder="³»¿ëÀ» ÀÔ·ÂÇØÁÖ¼¼¿ä" name="post_content" style="width:80%;height:200px;"></textarea><br><br>
-		<input type="text" size="40" placeholder="»çÁø Ãß°¡ (»çÁøÀº ÃÖ´ë 20Àå±îÁö µî·Ï °¡´ÉÇÕ´Ï´Ù)"/>
+		<input type="text" name="post_title" size="40" placeholder="ì œëª©ì„ ì…ë ¥í•´ì£¼ì„¸ìš”"/><br><br>
+		<textarea placeholder="ë‚´ìš©ì„ ì…ë ¥í•´ì£¼ì„¸ìš”" name="post_content" style="width:80%;height:200px;"></textarea><br><br>
+		<input type="text" size="40" placeholder="ì‚¬ì§„ ì¶”ê°€ (ì‚¬ì§„ì€ ìµœëŒ€ 20ì¥ê¹Œì§€ ë“±ë¡ ê°€ëŠ¥í•©ë‹ˆë‹¤)"/>
 		<input type="file" name="post_fileName"><br><br>
-		<input type="reset" value="ÀÛ¼ºÃë¼Ò"/>
-		<input type="submit" value="µî·ÏÇÏ±â"/>
+		<input type="reset" value="ì‘ì„±ì·¨ì†Œ"/>
+		<input type="submit" value="ë“±ë¡í•˜ê¸°"/>
 	</form>
 </body>
 </html>
