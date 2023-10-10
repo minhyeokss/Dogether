@@ -153,7 +153,6 @@ public class UserDAO {
         try {
             conn = ds.getConnection();
             pstmt = conn.prepareStatement(sql);
-            System.out.println(newPw);
             pstmt.setString(1, newPw);
             pstmt.setString(2, id);
             pstmt.executeUpdate();
