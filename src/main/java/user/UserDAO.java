@@ -164,41 +164,39 @@ public class UserDAO {
 	}
 
 	public int resignUser(String id, String pw) {
-    	String dbpw = ""; // DB상의 비밀번호를 담아둘 변수
-        int x = 0;
-        // 회원 정보 조회
-        String sql1 = "SELECT user_pw FROM tbluser WHERE user_id = ?";
-        // 회원 삭제
-        String sql2 = "DELETE FROM tbluser WHERE user_id=?";
-        try {
-        	conn = ds.getConnection();
-            pstmt = conn.prepareStatement(sql1);
-            pstmt.setString(1, id);
-            rs = pstmt.executeQuery();
-            
-            if (rs.next()) 
-            {
-                dbpw = rs.getString("user_pw");
-                if (dbpw.equals(pw)) // 입력된 비밀번호와 DB비번 비교
-                {
-                    // 같을경우 회원삭제 진행
-                    pstmt = conn.prepareStatement(sql2.toString());
-                    pstmt.setString(1, id);
-                    pstmt.executeUpdate();
-                    x = 1; // 삭제 성공
-                } else {
-                    x = 0; // 비밀번호 비교결과 - 다름
-                    System.out.println("baad");
-                }
-            }
- 
-            return x;
-        }
-        catch (Exception e) {
+		String dbpw = ""; // DB상의 비밀번호를 담아둘 변수
+		int x = 0;
+		// 회원 정보 조회
+		String sql1 = "SELECT user_pw FROM tbluser WHERE user_id = ?";
+		// 회원 삭제
+		String sql2 = "DELETE FROM tbluser WHERE user_id=?";
+		try {
+			conn = ds.getConnection();
+			pstmt = conn.prepareStatement(sql1);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				dbpw = rs.getString("user_pw");
+				if (dbpw.equals(pw)) // 입력된 비밀번호와 DB비번 비교
+				{
+					// 같을경우 회원삭제 진행
+					pstmt = conn.prepareStatement(sql2.toString());
+					pstmt.setString(1, id);
+					pstmt.executeUpdate();
+					x = 1; // 삭제 성공
+				} else {
+					x = 0; // 비밀번호 비교결과 - 다름
+					System.out.println("baad");
+				}
+			}
+
+			return x;
+		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			freeConnection();
 		}
 		return x;
-    }
+	}
 }
