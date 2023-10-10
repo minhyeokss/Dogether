@@ -10,7 +10,6 @@
 </head>
 <body>
 	<%
-		System.out.println("gkdl");
 		//세션에서 아이디를, regign.jsp에서 입력받은 비밀번호를 가져온다.
         String id= (String)session.getAttribute("sessionID"); 
         String pw = request.getParameter("pw");

@@ -164,7 +164,6 @@ public class UserDAO {
 	}
 
 	public int resignUser(String id, String pw) {
-		System.out.println("hello");
     	String dbpw = ""; // DB상의 비밀번호를 담아둘 변수
         int x = 0;
         // 회원 정보 조회
@@ -186,7 +185,6 @@ public class UserDAO {
                     pstmt = conn.prepareStatement(sql2.toString());
                     pstmt.setString(1, id);
                     pstmt.executeUpdate();
-                    System.out.println("goood");
                     x = 1; // 삭제 성공
                 } else {
                     x = 0; // 비밀번호 비교결과 - 다름

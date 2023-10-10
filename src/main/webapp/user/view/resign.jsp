@@ -16,7 +16,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form name="resign" method="post" action="../../index.jsp?contentPage=user/proc/resignProc.jsp"
+	<form name="resign" method="post" action="../../user/proc/resignProc.jsp"
         onsubmit="return checkValue()">
  
         <table>
