@@ -13,17 +13,17 @@
     request.setCharacterEncoding("UTF-8");
 
     // 로그인 화면에 입력된 아이디와 비밀번호를 가져온다
-    String id = request.getParameter("user_id");
-    String pw = request.getParameter("user_pw");
+    String user_id = request.getParameter("user_id");
+    String user_pw = request.getParameter("user_pw");
     
     // DB에서 아이디, 비밀번호 확인
-    int check = dao.loginCheck(id, pw);
+    int check = dao.loginCheck(user_id, user_pw);
     session = request.getSession();
     // URL 및 로그인관련 전달 메시지
     String msg = "";
     if(check == 1) { // 로그인 성공
         // 세션에 현재 아이디 세팅
-        session.setAttribute("sessionID", id);
+        session.setAttribute("sessionID", user_id);
         msg = "../../index.jsp";
     }
     else if(check == 0) { // 비밀번호가 틀릴 경우

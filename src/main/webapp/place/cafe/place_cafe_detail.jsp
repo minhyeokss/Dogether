@@ -14,12 +14,12 @@
   String p_id = request.getParameter("p_id");
   place = dao.readPlace(p_id);
   %>
-  <%=place.getP_category() %><br>
-  <%=place.getP_name() %><br>
-  <%=place.getP_score() %><br>
-  <%=place.getP_call() %><br>
-  <%=place.getP_address() %><br>
-  <%=place.getP_homepage() %><br>
+  <%=place.getPlace_category()%><br>
+  <%=place.getPlace_name()%><br>
+  <%=place.getPlace_score()%><br>
+  <%=place.getPlace_call()%><br>
+  <%=place.getPlace_address()%><br>
+  <%=place.getPlace_homepage()%><br>
 
 </body>
 </html>

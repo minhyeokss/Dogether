@@ -1,68 +1,68 @@
 package place;
 
 public class PlaceBean {
-    private int p_id;
-    private String p_category;
-    private String p_address;
-    private String p_name;
-    private String p_homepage;
-    private String p_time;
-    private String p_call;
-    private int p_likes;
-    private float p_score;
+    private int place_id;
+    private String place_category;
+    private String place_address;
+    private String place_name;
+    private String place_homepage;
+    private String place_time;
+    private String place_call;
+    private int place_likes;
+    private float place_score;
     
-    public int getP_id() {
-        return p_id;
+    public int getPlace_id() {
+        return place_id;
     }
-    public void setP_id(int p_id) {
-        this.p_id = p_id;
+    public void setPlace_id(int place_id) {
+        this.place_id = place_id;
     }
-    public String getP_category() {
-        return p_category;
+    public String getPlace_category() {
+        return place_category;
     }
-    public void setP_category(String p_category) {
-        this.p_category = p_category;
+    public void setPlace_category(String place_category) {
+        this.place_category = place_category;
     }
-    public String getP_address() {
-        return p_address;
+    public String getPlace_address() {
+        return place_address;
     }
-    public void setP_address(String p_address) {
-        this.p_address = p_address;
+    public void setPlace_address(String place_address) {
+        this.place_address = place_address;
     }
-    public String getP_name() {
-        return p_name;
+    public String getPlace_name() {
+        return place_name;
     }
-    public void setP_name(String p_name) {
-        this.p_name = p_name;
+    public void setPlace_name(String place_name) {
+        this.place_name = place_name;
     }
-    public String getP_homepage() {
-        return p_homepage;
+    public String getPlace_homepage() {
+        return place_homepage;
     }
-    public void setP_homepage(String p_homepage) {
-        this.p_homepage = p_homepage;
+    public void setPlace_homepage(String place_homepage) {
+        this.place_homepage = place_homepage;
     }
-    public String getP_time() {
-        return p_time;
+    public String getPlace_time() {
+        return place_time;
     }
-    public void setP_time(String p_time) {
-        this.p_time = p_time;
+    public void setPlace_time(String place_time) {
+        this.place_time = place_time;
     }
-    public String getP_call() {
-        return p_call;
+    public String getPlace_call() {
+        return place_call;
     }
-    public void setP_call(String p_call) {
-        this.p_call = p_call;
+    public void setPlace_call(String place_call) {
+        this.place_call = place_call;
     }
-    public int getP_likes() {
-        return p_likes;
+    public int getPlace_likes() {
+        return place_likes;
     }
-    public void setP_likes(int p_likes) {
-        this.p_likes = p_likes;
+    public void setPlace_likes(int place_likes) {
+        this.place_likes = place_likes;
     }
-    public float getP_score() {
-        return p_score;
+    public float getPlace_score() {
+        return place_score;
     }
-    public void setP_score(float p_score) {
-        this.p_score = p_score;
+    public void setPlace_score(float place_score) {
+        this.place_score = place_score;
     }
 }
