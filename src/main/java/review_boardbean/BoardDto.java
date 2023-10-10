@@ -4,9 +4,9 @@ import java.sql.Date;
 
 public class BoardDto {
 	private int post_id;
-	private int post_board_id;
-	private String post_user_id;
-	private String post_nickname;
+	private int board_id;
+	private String user_id;
+	private String user_nickname;
 	private String post_title;
 	private String post_content;
 	private Date post_create_date;
@@ -18,23 +18,23 @@ public class BoardDto {
 	public void setPost_id(int post_id) {
 		this.post_id = post_id;
 	}
-	public int getPost_board_id() {
-		return post_board_id;
+	public int getBoard_id() {
+		return board_id;
 	}
-	public void setPost_board_id(int post_board_id) {
-		this.post_board_id = post_board_id;
+	public void setBoard_id(int board_id) {
+		this.board_id = board_id;
 	}
-	public String getPost_user_id() {
-		return post_user_id;
+	public String getUser_id() {
+		return user_id;
 	}
-	public void setPost_user_id(String post_user_id) {
-		this.post_user_id = post_user_id;
+	public void setUser_id(String user_id) {
+		this.user_id = user_id;
 	}
-	public String getPost_nickname() {
-		return post_nickname;
+	public String getUser_nickname() {
+		return user_nickname;
 	}
-	public void setPost_nickname(String post_nickname) {
-		this.post_nickname = post_nickname;
+	public void setUser_nickname(String user_nickname) {
+		this.user_nickname = user_nickname;
 	}
 	public String getPost_title() {
 		return post_title;
@@ -66,6 +66,7 @@ public class BoardDto {
 	public void setPost_views(int post_views) {
 		this.post_views = post_views;
 	}
+	
 	
 	
 
