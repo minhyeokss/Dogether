@@ -187,7 +187,6 @@ public class UserDAO {
 					x = 1; // 삭제 성공
 				} else {
 					x = 0; // 비밀번호 비교결과 - 다름
-					System.out.println("baad");
 				}
 			}
 
