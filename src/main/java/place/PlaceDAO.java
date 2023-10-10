@@ -16,7 +16,7 @@ public class PlaceDAO {
      * Field
      */
 
-    private Connection con;
+    private Connection conn;
     private PreparedStatement pstmt;
     private ResultSet rs;
     private DataSource ds;
@@ -31,7 +31,7 @@ public class PlaceDAO {
             Context ctx = new InitialContext();
             ds = (DataSource) ctx.lookup("java:comp/env/jdbc/myoracle");
         } catch (Exception e) {
-            System.out.println("PlaceDAO:" + e);
+            System.out.println("PlaceDAO() : " + e);
         }
     }
 
@@ -55,9 +55,9 @@ public class PlaceDAO {
                 e.printStackTrace();
             }
         }
-        if (con != null) {
+        if (conn != null) {
             try {
-                con.close();
+                conn.close();
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -65,22 +65,22 @@ public class PlaceDAO {
     }
 
     // place_cafe_list.jsp
-    public List getPlaceList(String p_category) {
-        String sql = "select * from tblplace where p_category='" + p_category + "'";
+    public List getPlaceList(String place_category) {
+        String sql = "select * from tblplace where p_category='" + place_category + "'";
         Vector vector = new Vector();
         try {
-            con = ds.getConnection();
-            pstmt = con.prepareStatement(sql);
+            conn = ds.getConnection();
+            pstmt = conn.prepareStatement(sql);
             rs = pstmt.executeQuery();
-            
+
             while (rs.next()) {
                 PlaceBean place = new PlaceBean();
-                place.setP_name(rs.getString("p_name"));
-                place.setP_category(rs.getString("p_category"));
-                place.setP_address(rs.getString("p_address"));
-                place.setP_call(rs.getString("p_call"));
-                place.setP_id(rs.getInt("P_id"));
-                place.setP_score(rs.getInt("P_score"));
+                place.setPlace_name(rs.getString("place_name"));
+                place.setPlace_category(rs.getString("place_category"));
+                place.setPlace_address(rs.getString("place_address"));
+                place.setPlace_call(rs.getString("place_call"));
+                place.setPlace_id(rs.getInt("place_id"));
+                place.setPlace_score(rs.getInt("place_score"));
                 vector.add(place);
             }
         } catch (Exception e) {
@@ -90,24 +90,24 @@ public class PlaceDAO {
         }
         return vector;
     }
-    
+
     // place_cafe_detail.jsp
-    public PlaceBean readPlace(String p_id) {
-        String sql = "select * from tblplace where p_id=" + p_id;
+    public PlaceBean readPlace(String place_id) {
+        String sql = "select * from tblplace where place_id=" + place_id;
         PlaceBean place = new PlaceBean();
         try {
-            con = ds.getConnection();
-            pstmt = con.prepareStatement(sql);
+            conn = ds.getConnection();
+            pstmt = conn.prepareStatement(sql);
             rs = pstmt.executeQuery(sql);
-            
+
             if (rs.next()) {
-                place.setP_name(rs.getString("p_name"));
-                place.setP_category(rs.getString("p_category"));
-                place.setP_address(rs.getString("p_address"));
-                place.setP_call(rs.getString("p_call"));
-                place.setP_homepage(rs.getString("p_homepage"));
-                place.setP_id(rs.getInt("P_id"));
-                place.setP_score(rs.getInt("P_score"));
+                place.setPlace_name(rs.getString("place_name"));
+                place.setPlace_category(rs.getString("place_category"));
+                place.setPlace_address(rs.getString("place_address"));
+                place.setPlace_call(rs.getString("place_call"));
+                place.setPlace_homepage(rs.getString("place_homepage"));
+                place.setPlace_id(rs.getInt("place_id"));
+                place.setPlace_score(rs.getInt("place_score"));
             }
         } catch (Exception e) {
             System.out.println("readPlace() : " + e);
