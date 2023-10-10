@@ -373,7 +373,9 @@
 <input type="button" value="로그인" onclick="location.href='user/view/login.jsp'">
 <input type="button" value="회원가입" onclick="location.href='user/view/signUp.jsp'">
 <input type="button" value="비밀번호변경" onclick="location.href='user/view/changePw.jsp'">
+<input type="button" value="로그아웃" onclick="location.href='user/proc/logoutProc.jsp'"/>
 <input type="button" value="로그아웃" onclick="location.href='user/proc/logoutProc.jsp'"/><br>
+<input type="button" value="내 정보 조회" onclick="location.href='user/view/myInfo.jsp'"/>
 <form method="post" action="place/cafe/place_cafe_list.jsp">
   <input type="hidden" name="p_category" value="cafe">
   <input type="submit" value="카페">

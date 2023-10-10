@@ -5,17 +5,18 @@
     <script type="text/javascript">
         // 비밀번호 미입력시 경고창
         function checkValue(){
-            if(!document.resignProc.pw.value){
+            if(!document.resign.pw.value){
                 alert("비밀번호를 입력하지 않았습니다.");
                 return false;
             }
+            return true; // 제출 동작 실행
         }
     </script>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
-	<form name="deleteform" method="post" action="index.jsp?contentPage=user/proc/resignProc.jsp"
+	<form name="resign" method="post" action="../../user/proc/resignProc.jsp"
         onsubmit="return checkValue()">
  
         <table>

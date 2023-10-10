@@ -66,10 +66,8 @@ public class UserDAO {
     // 회원 정보를 USER테이블에 저장하는 메서드
     public void insertUser(UserBean user) {
         try {
-            String sql = "insert into tbluser"
-                    +" (user_id, user_grade, user_name, user_nickname,"
-                    +"user_pw, user_gender, user_email, user_regdate) "
-                    +"values(?, ?, ?, ?, ?, ?, ?, sysdate)";
+            String sql = "insert into tbluser" + " (user_id, user_grade, user_name, user_nickname,"
+                    + "user_pw, user_gender, user_email, user_regdate) " + "values(?, ?, ?, ?, ?, ?, ?, sysdate)";
             conn = ds.getConnection();
             pstmt = conn.prepareStatement(sql);
             // stringToDate(user);
@@ -90,7 +88,7 @@ public class UserDAO {
             freeConnection();
         } // end try~catch
     } // end insertUser()
-    
+
     // 로그인 시 아이디 ,비밀번호 체크 메서드
     // 아이디, 비밀번호를 인자로 받는다.
     public int loginCheck(String user_id, String user_pw) {
@@ -121,7 +119,7 @@ public class UserDAO {
             freeConnection();
         }
     } // end loginCheck()
-    
+  
  // 회원 정보 가져오기
     public UserBean getUser(String user_id) {
         String sql = "SELECT * FROM tbluser WHERE user_id = ?";
@@ -131,11 +129,12 @@ public class UserDAO {
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, user_id);
             rs = pstmt.executeQuery();
-            
+
             if (rs.next()) {
                 user.setUser_id(rs.getString("user_id"));
                 user.setUser_pw(rs.getString("user_pw"));
                 user.setUser_name(rs.getString("user_name"));
+                user.setUser_nickname(rs.getString("user_nickname"));
                 user.setUser_gender(rs.getString("user_gender"));
                 user.setUser_email(rs.getString("user_email"));
                 user.setUser_grade(rs.getInt("user_grade"));
@@ -163,5 +162,40 @@ public class UserDAO {
             freeConnection();
         }
     }
-    
+
+    public int resignUser(String id, String pw) {
+        String dbpw = ""; // DB상의 비밀번호를 담아둘 변수
+        int x = 0;
+        // 회원 정보 조회
+        String sql1 = "SELECT user_pw FROM tbluser WHERE user_id = ?";
+        // 회원 삭제
+        String sql2 = "DELETE FROM tbluser WHERE user_id=?";
+        try {
+            conn = ds.getConnection();
+            pstmt = conn.prepareStatement(sql1);
+            pstmt.setString(1, id);
+            rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                dbpw = rs.getString("user_pw");
+                if (dbpw.equals(pw)) // 입력된 비밀번호와 DB비번 비교
+                {
+                    // 같을경우 회원삭제 진행
+                    pstmt = conn.prepareStatement(sql2.toString());
+                    pstmt.setString(1, id);
+                    pstmt.executeUpdate();
+                    x = 1; // 삭제 성공
+                } else {
+                    x = 0; // 비밀번호 비교결과 - 다름
+                }
+            }
+
+            return x;
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            freeConnection();
+        }
+        return x;
+    }
 }

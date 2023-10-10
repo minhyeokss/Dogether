@@ -61,5 +61,6 @@
   <hr>
 
   <input type="button" value="뒤로가기" onclick="location.href='../../index.jsp'">
+  <input type="button" value="회원탈퇴" onclick="location.href='resign.jsp'"/>
 </body>
 </html>
