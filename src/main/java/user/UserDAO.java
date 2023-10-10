@@ -91,20 +91,20 @@ public class UserDAO {
 
     // 로그인 시 아이디 ,비밀번호 체크 메서드
     // 아이디, 비밀번호를 인자로 받는다.
-    public int loginCheck(String id, String password) {
+    public int loginCheck(String user_id, String user_pw) {
         String dbPW = ""; // db에서 꺼낸 비밀번호를 담을 변수
         int x;
         try {
             String sql = "select user_pw from tbluser where user_id=?";
             conn = ds.getConnection();
             pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, id);
+            pstmt.setString(1, user_id);
             rs = pstmt.executeQuery();
             if (rs.next()) // 입력한 아이디에 해당하는 비밀번호가 있을 경우
             {
                 dbPW = rs.getString("user_pw");
 
-                if (dbPW.equals(password))
+                if (dbPW.equals(user_pw))
                     x = 1; // 넘겨받은 비번과 꺼내온 비번 비교. 같으면 인증 성공
                 else
                     x = 0;
@@ -119,15 +119,15 @@ public class UserDAO {
             freeConnection();
         }
     } // end loginCheck()
-
-    // 회원 정보 가져오기
-    public UserBean getUser(String id) {
+  
+ // 회원 정보 가져오기
+    public UserBean getUser(String user_id) {
         String sql = "SELECT * FROM tbluser WHERE user_id = ?";
         UserBean user = new UserBean();
         try {
             conn = ds.getConnection();
             pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, id);
+            pstmt.setString(1, user_id);
             rs = pstmt.executeQuery();
 
             if (rs.next()) {
@@ -138,6 +138,7 @@ public class UserDAO {
                 user.setUser_gender(rs.getString("user_gender"));
                 user.setUser_email(rs.getString("user_email"));
                 user.setUser_grade(rs.getInt("user_grade"));
+                user.setUser_nickname(rs.getString("user_nickname"));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -146,15 +147,14 @@ public class UserDAO {
         }
         return user;
     }
-
-    public void updatePw(String id, String newPw) {
+    
+    public void updatePw(String user_id, String newUser_pw) {
         String sql = "UPDATE tbluser SET user_pw = ? WHERE user_id = ?";
         try {
             conn = ds.getConnection();
             pstmt = conn.prepareStatement(sql);
-            System.out.println(newPw);
-            pstmt.setString(1, newPw);
-            pstmt.setString(2, id);
+            pstmt.setString(1, newUser_pw);
+            pstmt.setString(2, user_id);
             pstmt.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();

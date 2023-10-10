@@ -16,6 +16,6 @@
     </form>
 
     <hr>
-    <input type="button" value="취소" onclick="location.href='../index.jsp'">
+    <input type="button" value="취소" onclick="location.href='../../index.jsp'">
 </body>
 </html>
