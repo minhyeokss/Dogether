@@ -37,7 +37,7 @@ PrintWriter useout = response.getWriter();
 try {
     if (userBean != null && currentPw.equals(userBean.getUser_pw()) && !newPw.isEmpty()) {
         dao.updatePw(id, newPw);
-        out.println("<script>alert('비밀번호가 변경되었습니다.'); location.href='index.jsp';</script>");
+        out.println("<script>alert('비밀번호가 변경되었습니다.'); location.href='../../index.jsp';</script>");
     } else if (!currentPw.equals(userBean.getUser_pw())) {
         out.println("<script>alert('비밀번호가 맞지 않습니다. 다시 시도해주세요.'); history.go(-1);</script>");
     } else if (newPw.isEmpty()) {

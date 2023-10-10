@@ -73,7 +73,7 @@ public class UserDAO {
             conn = ds.getConnection();
             pstmt = conn.prepareStatement(sql);
             // stringToDate(user);
-            pstmt.setString(1, user.getUser_name());
+            pstmt.setString(1, user.getUser_id());
             pstmt.setInt(2, user.getUser_grade());
             pstmt.setString(3, user.getUser_name());
             pstmt.setString(4, user.getUser_nickname());
