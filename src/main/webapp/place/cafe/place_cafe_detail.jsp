@@ -20,16 +20,6 @@
 </head>
 
 <body>
-  <%
-  String p_id = request.getParameter("p_id");
-  placeDto = placeDao.readPlace(p_id);
-  %>
-  <%=placeDto.getPlace_category()%><br>
-  <%=placeDto.getPlace_name()%><br>
-  <%=placeDto.getPlace_score()%><br>
-  <%=placeDto.getPlace_call()%><br>
-  <%=placeDto.getPlace_address()%><br>
-  <%=placeDto.getPlace_homepage()%><br>
   <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
       <a class="navbar-brand" href="Main.html">Logo</a>
@@ -182,6 +172,15 @@
   </div>
 
   <img class="mapimage" src="./Img/Capture.png" alt="">
-
+  <%
+  String p_id = request.getParameter("p_id");
+  placeDto = placeDao.readPlace(p_id);
+  %>
+  <%=placeDto.getPlace_category()%><br>
+  <%=placeDto.getPlace_name()%><br>
+  <%=placeDto.getPlace_score()%><br>
+  <%=placeDto.getPlace_call()%><br>
+  <%=placeDto.getPlace_address()%><br>
+  <%=placeDto.getPlace_homepage()%><br>
 </body>
 </html>

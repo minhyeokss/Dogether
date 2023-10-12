@@ -10,16 +10,16 @@
 <title>Insert title here</title>
 </head>
 <body>
-<jsp:useBean id="dto" class="user.UserDto"/>
-<jsp:useBean id="dao" class="user.UserDao"/>
+<jsp:useBean id="userDto" class="user.UserDto"/>
+<jsp:useBean id="userDao" class="user.UserDao"/>
 <%
 String user_id = (String)session.getAttribute("sessionID");
 	
-	UserDto user = (UserDto)dao.getUser(user_id);
-	String user_nickname = user.getUser_nickname();
+	userDto = userDao.getUser(user_id);
+	String user_nickname = userDto.getUser_nickname();
 %>
 	<h1>후기 게시판</h1>
-	<form name="review_board_post" method="post" action="Review_board_postproc.jsp">
+	<form name="review_board_post" method="post" action="post_postproc.jsp">
 	
 		<!--  user_id 값 넘기기 -->
 		<input type="hidden" name="user_id" value="<%=user_id%>"/><br>

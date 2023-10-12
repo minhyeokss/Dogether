@@ -5,7 +5,7 @@
     <script type="text/javascript">
         // 비밀번호 미입력시 경고창
         function checkValue(){
-            if(!document.resign.pw.value){
+            if(!document.resign.user_pw.value){
                 alert("비밀번호를 입력하지 않았습니다.");
                 return false;
             }
@@ -22,7 +22,7 @@
         <table>
             <tr>
                 <td>비밀번호</td>
-                <td><input type="password" name="pw" maxlength="50"></td>
+                <td><input type="password" name="user_pw" maxlength="50"></td>
             </tr>
         </table>
         

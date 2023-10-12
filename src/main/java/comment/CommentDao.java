@@ -88,7 +88,7 @@ public class CommentDao {
     public List getComment(int post_id) {
         String sql =
                 "SELECT comment_id, user_nickname, comment_content, comment_create_date, user_id "
-                        + "from comment WHERE post_id=?";
+                        + "from tblcomment WHERE post_id=?";
         Vector vector = new Vector();
         try {
             conn = ds.getConnection();
@@ -115,13 +115,18 @@ public class CommentDao {
     // 임시 댓글수정 보여주기
     public CommentDto getCommentUpdate(int comment_id) {
         String sql =
-                "SELECT user_nickname, comment_content, user_id FROM comment WHERE comment_id=?";
+                "SELECT user_nickname, comment_content, user_id, post_id FROM tblcomment WHERE comment_id=?";
         CommentDto commentDto = new CommentDto();
         try {
             conn = ds.getConnection();
             pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1, comment_id);
             rs = pstmt.executeQuery();
+            while (rs.next()) {
+                commentDto.setUser_nickname(rs.getString("user_nickname"));
+                commentDto.setComment_content(rs.getString("comment_content"));
+                commentDto.setPost_id((rs.getInt("post_id")));
+            }
         } catch (Exception e) {
             System.out.println("getCommentUpdate() : " + e);
         } finally {
@@ -132,7 +137,7 @@ public class CommentDao {
 
     // update_proc.jsp
     public void setCommentUpdate(CommentDto commentDto) {
-        String sql = "UPDATE comment SET comment_content=? WHERE comment_id=?";
+        String sql = "UPDATE tblcomment SET comment_content=? WHERE comment_id=?";
         try {
             conn = ds.getConnection();
             pstmt = conn.prepareStatement(sql);
@@ -141,6 +146,21 @@ public class CommentDao {
             pstmt.executeUpdate();
         } catch (Exception e) {
             System.out.println("setCommentUpdate() : " + e);
+        } finally {
+            freeConnection();
+        }
+    }
+
+    // delete.jsp
+    public void setCommentDelete(int comment_id) {
+        String sql = "DELETE FROM tblcomment WHERE comment_id=?";
+        try {
+            conn = ds.getConnection();
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, comment_id);
+            pstmt.executeUpdate();
+        } catch (Exception e) {
+            System.out.println("setCommentDelete() : " + e);
         } finally {
             freeConnection();
         }

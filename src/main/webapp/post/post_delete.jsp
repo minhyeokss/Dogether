@@ -9,19 +9,19 @@
 <title>Insert title here</title>
 </head>
 <body>
-<jsp:useBean id="dto" class="review_boardbean.BoardDto"/>
-<jsp:useBean id="dao" class="review_boardbean.BoardDao"/>
+<jsp:useBean id="postDto" class="post.PostDto"/>
+<jsp:useBean id="postDao" class="post.PostDao"/>
 
 <%
 	request.setCharacterEncoding("UTF-8");
 %>
 
-<jsp:setProperty property="post_id" name="dto"/>
+<jsp:setProperty property="post_id" name="postDto"/>
 
 
-<% 
-	dao.setReviewDelete(dto);
-	response.sendRedirect("Review_board_list.jsp"); 
+<%
+postDao.deletePost(postDto);
+response.sendRedirect("post_list.jsp");
 %>
 
 </body>

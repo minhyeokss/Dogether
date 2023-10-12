@@ -67,7 +67,8 @@ public class UserDao {
     public void insertUser(UserDto user) {
         try {
             String sql = "insert into tbluser" + " (user_id, user_grade, user_name, user_nickname,"
-                    + "user_pw, user_gender, user_email, user_regdate) " + "values(?, ?, ?, ?, ?, ?, ?, sysdate)";
+                    + "user_pw, user_gender, user_email, user_regdate) "
+                    + "values(?, ?, ?, ?, ?, ?, ?, sysdate)";
             conn = ds.getConnection();
             pstmt = conn.prepareStatement(sql);
             // stringToDate(user);
@@ -81,7 +82,6 @@ public class UserDao {
             pstmt.setString(7, user.getUser_email());
             // 쿼리 실행
             pstmt.executeUpdate();
-
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -103,7 +103,6 @@ public class UserDao {
             if (rs.next()) // 입력한 아이디에 해당하는 비밀번호가 있을 경우
             {
                 dbPW = rs.getString("user_pw");
-
                 if (dbPW.equals(user_pw))
                     x = 1; // 넘겨받은 비번과 꺼내온 비번 비교. 같으면 인증 성공
                 else
@@ -119,8 +118,8 @@ public class UserDao {
             freeConnection();
         }
     } // end loginCheck()
-  
- // 회원 정보 가져오기
+
+    // 회원 정보 가져오기
     public UserDto getUser(String user_id) {
         String sql = "SELECT * FROM tbluser WHERE user_id = ?";
         UserDto user = new UserDto();
@@ -129,7 +128,6 @@ public class UserDao {
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, user_id);
             rs = pstmt.executeQuery();
-
             if (rs.next()) {
                 user.setUser_id(rs.getString("user_id"));
                 user.setUser_pw(rs.getString("user_pw"));
@@ -147,7 +145,7 @@ public class UserDao {
         }
         return user;
     }
-    
+
     public void updatePw(String user_id, String newUser_pw) {
         String sql = "UPDATE tbluser SET user_pw = ? WHERE user_id = ?";
         try {
@@ -189,7 +187,6 @@ public class UserDao {
                     x = 0; // 비밀번호 비교결과 - 다름
                 }
             }
-
             return x;
         } catch (Exception e) {
             e.printStackTrace();

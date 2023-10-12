@@ -23,22 +23,21 @@
 	
 	<%
 		int post_id = Integer.parseInt(request.getParameter("post_id"));
-		//System.out.println(post_id);
-		PostDto detailDto = (PostDto)postDao.getPost(post_id);
+		postDto = postDao.getPost(post_id);
 	%>
 	
 	<table bgcolor="#E2E2E2" width="80%" align="center">
 		<tr align="center">
-			<td colspan="3"><h3><%=detailDto.getPost_title() %></h3></td>
+			<td colspan="3"><h3><%=postDto.getPost_title() %></h3></td>
 		</tr>
 		<tr>
-			<td align="left" width="70%">조회수 <%= detailDto.getPost_views() %></td>
-			<td align="center" width="15%" style="border-right:1px solid black;"><%= detailDto.getUser_nickname() %></td>
-			<td align="center" width="15%"><%= detailDto.getPost_create_date() %></td>
+			<td align="left" width="70%">조회수 <%= postDto.getPost_views() %></td>
+			<td align="center" width="15%" style="border-right:1px solid black;"><%= postDto.getUser_nickname() %></td>
+			<td align="center" width="15%"><%= postDto.getPost_create_date() %></td>
 		</tr>		
 		<tr>
 			<hr/>
-			<td colspan="3" height="300px" style="border-top:1px solid black;"><%= detailDto.getPost_content() %></td>
+			<td colspan="3" height="300px" style="border-top:1px solid black;"><%= postDto.getPost_content() %></td>
 		</tr>
 		<tr>
 			<td colspan="3"><div>이미지<img src=""/></div></td>
@@ -48,18 +47,18 @@
 	<br><br>
 	
 <%
-	String user_id = detailDto.getUser_id();
+	String user_id = postDto.getUser_id();
 	
 	if(user_id.equals(session.getAttribute("sessionID"))) {
 %>
-	<input type="button" value="수정하기" onClick="location='Review_board_update.jsp?post_id=<%=detailDto.getPost_id() %>'"/>
-	<input type="button" value="삭제하기" onClick="location='Review_board_delete.jsp?post_id=<%=detailDto.getPost_id() %>'"/>
+	<input type="button" value="수정하기" onClick="location='post_update.jsp?post_id=<%=postDto.getPost_id() %>'"/>
+	<input type="button" value="삭제하기" onClick="location='post_delete.jsp?post_id=<%=postDto.getPost_id() %>'"/>
 <%
 	}
 %>
 	
 	<input type="button" value="게시글 좋아요 하기"/>
-	<input type="button" value="목록" onClick="location='Review_board_list.jsp'"/>
+	<input type="button" value="목록" onClick="location='post_list.jsp'"/>
 	
 	<br><br>
 	
@@ -68,7 +67,7 @@
 	<jsp:useBean id="commentDao" class="comment.CommentDao"/>
 	<jsp:useBean id="userDao" class="user.UserDao"/>
 <%
-	Vector vec = (Vector)commentDao.getComment(detailDto.getPost_id());
+	Vector vec = (Vector)commentDao.getComment(postDto.getPost_id());
 	
 	String userId = (String)session.getAttribute("sessionID");
 
@@ -76,8 +75,8 @@
 	String now_user_nickname = user.getUser_nickname();
 %>
 	<h3>댓글 <%=vec.size()%> 개</h3>
-	<form method="post" action="../comment/Comment.jsp" >
-		<input type="hidden" value="<%=detailDto.getPost_id()%>" name="post_id"/>
+	<form method="post" action="../comment/comment.jsp" >
+		<input type="hidden" value="<%=postDto.getPost_id()%>" name="post_id"/>
 		<input type="text" value="<%=now_user_nickname %>" name="user_nickname" readonly/>
 		<textarea placeholder="댓글을 입력해주세요" name="comment_content" style="width:60%;height:20px;"></textarea>
 		<input type="submit" value="댓글 달기"/>
@@ -98,8 +97,8 @@
 	if(comment_user_id.equals(session.getAttribute("sessionID"))) {
 %>
 			<td align="right">
-				<input type="button" value="수정" onClick="location='../comment/Comment_update.jsp?comment_id=<%=comment.getComment_id() %>'"/><br>
-				<input type="button" value="삭제" onClick="location='../comment/Comment_delete.jsp?comment_id=<%=comment.getComment_id()%>'"/>
+				<input type="button" value="수정" onClick="location='../comment/comment_update.jsp?comment_id=<%=comment.getComment_id() %>'"/><br>
+				<input type="button" value="삭제" onClick="location='../comment/comment_delete.jsp?comment_id=<%=comment.getComment_id()%>'"/>
 			</td>
 <%
 	}

@@ -18,7 +18,7 @@ function goLogin() {
   %>
   <jsp:useBean id="userDto" class="user.UserDto" />
   <jsp:useBean id="userDao" class="user.UserDao" />
-  <jsp:setProperty property="*" name="userBean" />
+  <jsp:setProperty property="*" name="userDto" />
   <%
   try {
       userDao.insertUser(userDto);

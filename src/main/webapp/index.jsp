@@ -40,7 +40,7 @@
           <li class="nav-item dropdown-center"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">커뮤니티</a>
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="#">공지사항</a></li>
-              <li><a class="dropdown-item" href="review_board/Review_board_list.jsp">후기게시판</a></li>
+              <li><a class="dropdown-item" href="post/post_list.jsp">후기게시판</a></li>
               <li><a class="dropdown-item" href="#">홍보게시판</a></li>
               <li><a class="dropdown-item" href="#">뉴스/칼럼</a></li>
             </ul></li>
@@ -50,7 +50,7 @@
               <li><a class="dropdown-item" href="user/view/myInfo.jsp">내정보 수정</a></li>
               <li><a class="dropdown-item" href="user/view/changePw.jsp">비밀번호 변경</a></li>
               <li><a class="dropdown-item" href="#">관심장소 모아보기</a></li>
-              <li><a class="dropdown-item" href="#">관심글 모아보기</a></li>
+              <li><a class="dropdown-item" href="favorite/favorite_post.jsp">관심글 모아보기</a></li>
               <li><a class="dropdown-item" href="#">활동내역</a></li>
             </ul></li>
         </ul>
