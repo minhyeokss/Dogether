@@ -15,15 +15,17 @@
 </head>
 <body>
 <jsp:useBean id="postDto" class="post.PostDto"/>
-<jsp:setProperty property="post_id" name="postDto"/>
 <jsp:useBean id="postDao" class="post.PostDao"/>
+
 
 
 	<h1>후기 게시판</h1>
 	
 	<%
-		PostDto detailDto = (PostDto)postDao.getPost(postDto);
-		%>
+		int post_id = Integer.parseInt(request.getParameter("post_id"));
+		//System.out.println(post_id);
+		PostDto detailDto = (PostDto)postDao.getPost(post_id);
+	%>
 	
 	<table bgcolor="#E2E2E2" width="80%" align="center">
 		<tr align="center">
@@ -66,7 +68,7 @@
 	<jsp:useBean id="commentDao" class="comment.CommentDao"/>
 	<jsp:useBean id="userDao" class="user.UserDao"/>
 <%
-Vector vec = (Vector)commentDao.getComment(detailDto.getPost_id());
+	Vector vec = (Vector)commentDao.getComment(detailDto.getPost_id());
 	
 	String userId = (String)session.getAttribute("sessionID");
 
@@ -74,10 +76,10 @@ Vector vec = (Vector)commentDao.getComment(detailDto.getPost_id());
 	String now_user_nickname = user.getUser_nickname();
 %>
 	<h3>댓글 <%=vec.size()%> 개</h3>
-	<form method="post" action="../comment/Comments.jsp" >
+	<form method="post" action="../comment/Comment.jsp" >
 		<input type="hidden" value="<%=detailDto.getPost_id()%>" name="post_id"/>
 		<input type="text" value="<%=now_user_nickname %>" name="user_nickname" readonly/>
-		<textarea placeholder="댓글을 입력해주세요" name="comments_content" style="width:60%;height:20px;"></textarea>
+		<textarea placeholder="댓글을 입력해주세요" name="comment_content" style="width:60%;height:20px;"></textarea>
 		<input type="submit" value="댓글 달기"/>
 	</form><br>
 	<table width="80%" align="center" style="border-collapse:collapse;">
@@ -87,16 +89,18 @@ Vector vec = (Vector)commentDao.getComment(detailDto.getPost_id());
 %>
 		<tr style="border-top:1px solid black;">
 			<td ><%=comment.getUser_nickname() %></td>
-			<td align="right"><%=comment.getComment_create_date()%></td>
+			<td align="right"><%=comment.getComment_create_date() %></td>
 		</tr>
 		<tr >
-			<td><h5><%=comment.getComment_content()%></h5></td>
+			<td><h5><%=comment.getComment_content() %></h5></td>
 <%
 	String comment_user_id = comment.getUser_id();
 	if(comment_user_id.equals(session.getAttribute("sessionID"))) {
 %>
-			<td align="right"><input type="button" value="수정" onClick="location='../comment/Comments_update.jsp?comments_id=<%=comment.getComment_id()%>'"/><br>
-			<input type="button" value="삭제"/></td>
+			<td align="right">
+				<input type="button" value="수정" onClick="location='../comment/Comment_update.jsp?comment_id=<%=comment.getComment_id() %>'"/><br>
+				<input type="button" value="삭제" onClick="location='../comment/Comment_delete.jsp?comment_id=<%=comment.getComment_id()%>'"/>
+			</td>
 <%
 	}
 %>

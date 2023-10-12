@@ -18,9 +18,10 @@
 <%
 	String user_id = (String)session.getAttribute("sessionID");
     commentDto.setUser_id(user_id);
-	
+
     commentDao.setComment(commentDto);
 	response.sendRedirect("../review_board/Review_board_detail.jsp?post_id="+commentDto.getPost_id());
+
 %>
 
 </body>
