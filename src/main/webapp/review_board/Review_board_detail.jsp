@@ -3,9 +3,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.util.*" %>
-<%@ page import="review_boardbean.*" %>
+<%@ page import="post.*" %>
 <%@ page import="user.*" %>
-<%@ page import="comment_bean.*" %>
+<%@ page import="comment.*" %>
 
 <!DOCTYPE html>
 <html>
@@ -14,16 +14,16 @@
 <title>Insert title here</title>
 </head>
 <body>
-<jsp:useBean id="dto" class="review_boardbean.BoardDto"/>
-<jsp:setProperty property="post_id" name="dto"/>
-<jsp:useBean id="dao" class="review_boardbean.BoardDao"/>
+<jsp:useBean id="postDto" class="post.PostDto"/>
+<jsp:setProperty property="post_id" name="postDto"/>
+<jsp:useBean id="postDao" class="post.PostDao"/>
 
 
 	<h1>후기 게시판</h1>
 	
 	<%
-		BoardDto detailDto = (BoardDto)dao.getReviewDetail(dto);
-	%>
+		PostDto detailDto = (PostDto)postDao.getPost(postDto);
+		%>
 	
 	<table bgcolor="#E2E2E2" width="80%" align="center">
 		<tr align="center">
@@ -61,16 +61,16 @@
 	
 	<br><br>
 	
-	<jsp:useBean id="commentDto" class="comment_bean.CommentDto"/>
+	<jsp:useBean id="commentDto" class="comment.CommentDto"/>
 	<jsp:setProperty property="post_id" name="commentDto"/>
-	<jsp:useBean id="commentDao" class="comment_bean.CommentDao"/>
-	<jsp:useBean id="UserDAO" class="user.UserDAO"/>
+	<jsp:useBean id="commentDao" class="comment.CommentDao"/>
+	<jsp:useBean id="userDao" class="user.UserDao"/>
 <%
-	Vector vec = (Vector)commentDao.getComments(detailDto.getPost_id());
+Vector vec = (Vector)commentDao.getComment(detailDto.getPost_id());
 	
 	String userId = (String)session.getAttribute("sessionID");
 
-	UserBean user = (UserBean)UserDAO.getUser(userId);
+	UserDto user = (UserDto)userDao.getUser(userId);
 	String now_user_nickname = user.getUser_nickname();
 %>
 	<h3>댓글 <%=vec.size()%> 개</h3>
@@ -87,15 +87,15 @@
 %>
 		<tr style="border-top:1px solid black;">
 			<td ><%=comment.getUser_nickname() %></td>
-			<td align="right"><%=comment.getComments_create_date() %></td>
+			<td align="right"><%=comment.getComment_create_date()%></td>
 		</tr>
 		<tr >
-			<td><h5><%=comment.getComments_content() %></h5></td>
+			<td><h5><%=comment.getComment_content()%></h5></td>
 <%
 	String comment_user_id = comment.getUser_id();
 	if(comment_user_id.equals(session.getAttribute("sessionID"))) {
 %>
-			<td align="right"><input type="button" value="수정" onClick="location='../comment/Comments_update.jsp?comments_id=<%=comment.getComments_id() %>'"/><br>
+			<td align="right"><input type="button" value="수정" onClick="location='../comment/Comments_update.jsp?comments_id=<%=comment.getComment_id()%>'"/><br>
 			<input type="button" value="삭제"/></td>
 <%
 	}

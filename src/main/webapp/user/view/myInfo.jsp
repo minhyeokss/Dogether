@@ -1,14 +1,14 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
-<%@ page import="user.UserDAO"%>
-<%@ page import="user.UserBean"%>
-<jsp:useBean id="userBean" class="user.UserBean" />
-<jsp:useBean id="dao" class="user.UserDAO" />
+<%@ page import="user.UserDao"%>
+<%@ page import="user.UserDto"%>
+<jsp:useBean id="userDto" class="user.UserDto" />
+<jsp:useBean id="userDao" class="user.UserDao" />
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>내 정보 조회</title>
-</head>
+</head> 
 <body>
   <%
   request.setCharacterEncoding("UTF-8");
@@ -17,26 +17,26 @@
       response.sendRedirect("login.jsp");
   } else {
       try {
-          userBean = dao.getUser(id);
-          if (userBean != null) {
+          userDto = userDao.getUser(id);
+          if (userDto != null) {
   %>
   <h2>내 정보 조회</h2>
   <table border="1">
     <tr>
       <td>닉네임</td>
-      <td><%=userBean.getUser_nickname()%></td>
+      <td><%=userDto.getUser_nickname()%></td>
     </tr>
     <tr>
       <td>이메일</td>
-      <td><%=userBean.getUser_email()%></td>
+      <td><%=userDto.getUser_email()%></td>
     </tr>
     <tr>
       <td>아이디</td>
-      <td><%=userBean.getUser_id()%></td>
+      <td><%=userDto.getUser_id()%></td>
     </tr>
     <tr>
       <td>이름</td>
-      <td><%=userBean.getUser_name()%></td>
+      <td><%=userDto.getUser_name()%></td>
     </tr>
     <tr>
       <td>생년월일</td>
@@ -44,11 +44,11 @@
     </tr>
     <tr>
       <td>성별</td>
-      <td><%=userBean.getUser_gender()%></td>
+      <td><%=userDto.getUser_gender()%></td>
     </tr>
     <tr>
       <td>회원 종류</td>
-      <td><%=userBean.getUser_grade()%></td>
+      <td><%=userDto.getUser_grade()%></td>
     </tr>
   </table>
   <%

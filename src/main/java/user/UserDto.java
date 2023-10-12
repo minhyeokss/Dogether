@@ -3,7 +3,7 @@ package user;
 import java.sql.Timestamp;
 import java.util.Date;
 
-public class UserBean {
+public class UserDto {
 
 	private String user_id;
 	private String user_pw;

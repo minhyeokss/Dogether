@@ -1,7 +1,7 @@
 <%@ page import="java.util.*"%>
 <%@ page import="place.*"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
-<jsp:useBean id="dao" class="place.PlaceDAO" />
+<jsp:useBean id="placeDao" class="place.PlaceDao" />
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -31,7 +31,7 @@
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="#">식당</a></li>
               <li><a class="dropdown-item" href="#">병원</a></li>
-              <li><a class="dropdown-item" href="place/cafe/place_cafe_list.jsp?p_category=cafe">카페</a></li>
+              <li><a class="dropdown-item" href="place_cafe_list.jsp?p_category=cafe">카페</a></li>
               <li><a class="dropdown-item" href="#">애견카페</a></li>
               <li><a class="dropdown-item" href="#">숙소</a></li>
               <li><a class="dropdown-item" href="#">애견유치원</a></li>
@@ -143,13 +143,13 @@
 
     <div class="results">
       <%
-      String p_category = request.getParameter("p_category");
-      Vector vec = (Vector) dao.getPlaceList(p_category);
-      int n = (vec.size() < 6) ? vec.size() : 6;
-      if (n >= 1) {
-          for (int i = 0; i < ((n / 2.0 < 3.0) ? Math.ceil(n / 2.0) : 3); i++) {
-              for (int j = 0; j < ((n - i * 2) < 2 ? (n - i * 2) : 2); j++) {
-                  PlaceBean place = (PlaceBean) vec.get(j + i * 2);
+      String place_category = request.getParameter("place_category");
+            Vector vec = (Vector) placeDao.getPlaceList(place_category);
+            int n = (vec.size() < 6) ? vec.size() : 6;
+            if (n >= 1) {
+                for (int i = 0; i < ((n / 2.0 < 3.0) ? Math.ceil(n / 2.0) : 3); i++) {
+            for (int j = 0; j < ((n - i * 2) < 2 ? (n - i * 2) : 2); j++) {
+                PlaceDto place = (PlaceDto) vec.get(j + i * 2);
       %>
 
       <div class="cards">

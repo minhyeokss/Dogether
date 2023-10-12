@@ -9,7 +9,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
-public class UserDAO {
+public class UserDao {
 
     /*
      * Field
@@ -25,7 +25,7 @@ public class UserDAO {
      */
 
     // Default Constructor
-    public UserDAO() {
+    public UserDao() {
         try {
             Context ctx = new InitialContext();
             ds = (DataSource) ctx.lookup("java:comp/env/jdbc/myoracle");
@@ -64,7 +64,7 @@ public class UserDAO {
     }
 
     // 회원 정보를 USER테이블에 저장하는 메서드
-    public void insertUser(UserBean user) {
+    public void insertUser(UserDto user) {
         try {
             String sql = "insert into tbluser" + " (user_id, user_grade, user_name, user_nickname,"
                     + "user_pw, user_gender, user_email, user_regdate) " + "values(?, ?, ?, ?, ?, ?, ?, sysdate)";
@@ -121,9 +121,9 @@ public class UserDAO {
     } // end loginCheck()
   
  // 회원 정보 가져오기
-    public UserBean getUser(String user_id) {
+    public UserDto getUser(String user_id) {
         String sql = "SELECT * FROM tbluser WHERE user_id = ?";
-        UserBean user = new UserBean();
+        UserDto user = new UserDto();
         try {
             conn = ds.getConnection();
             pstmt = conn.prepareStatement(sql);

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="user.UserBean"%>
-<%@ page import="user.UserDAO"%>
+<%@ page import="user.UserDto"%>
+<%@ page import="user.UserDao"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,17 +10,17 @@
 </head>
 <body>
 	<%
-		//세션에서 아이디를, regign.jsp에서 입력받은 비밀번호를 가져온다.
-        String id= (String)session.getAttribute("sessionID"); 
-        String pw = request.getParameter("pw");
-        
-        // 가져온 결과를 가지고 회원정보를 삭제한다. - 삭제결과를 반환
-        UserDAO dao = new UserDAO();
-        int check = dao.resignUser(id, pw);
-        
-        if(check == 1){
-            session.invalidate(); // 삭제했다면 세션정보를 삭제한다.
-    %>
+	//세션에서 아이디를, regign.jsp에서 입력받은 비밀번호를 가져온다.
+	        String id= (String)session.getAttribute("sessionID"); 
+	        String pw = request.getParameter("pw");
+	        
+	        // 가져온 결과를 가지고 회원정보를 삭제한다. - 삭제결과를 반환
+	        UserDao dao = new UserDao();
+	        int check = dao.resignUser(id, pw);
+	        
+	        if(check == 1){
+	    session.invalidate(); // 삭제했다면 세션정보를 삭제한다.
+	%>
 	<br><br>
 	<b>회원정보가 삭제되었습니다.</b>
 	<br><br>
