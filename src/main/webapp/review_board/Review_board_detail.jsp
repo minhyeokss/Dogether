@@ -3,9 +3,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.util.*" %>
-<%@ page import="review_boardbean.*" %>
+<%@ page import="post.*" %>
 <%@ page import="user.*" %>
-<%@ page import="comment_bean.*" %>
+<%@ page import="comment.*" %>
 
 <!DOCTYPE html>
 <html>
@@ -14,8 +14,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-<jsp:useBean id="dto" class="review_boardbean.BoardDto"/>
-<jsp:useBean id="dao" class="review_boardbean.BoardDao"/>
+<jsp:useBean id="postDto" class="post.PostDto"/>
+<jsp:useBean id="postDao" class="post.PostDao"/>
+
 
 
 	<h1>후기 게시판</h1>
@@ -23,7 +24,7 @@
 	<%
 		int post_id = Integer.parseInt(request.getParameter("post_id"));
 		//System.out.println(post_id);
-		BoardDto detailDto = (BoardDto)dao.getReviewDetail(post_id);
+		PostDto detailDto = (PostDto)postDao.getPost(post_id);
 	%>
 	
 	<table bgcolor="#E2E2E2" width="80%" align="center">
@@ -62,16 +63,16 @@
 	
 	<br><br>
 	
-	<jsp:useBean id="commentDto" class="comment_bean.CommentDto"/>
+	<jsp:useBean id="commentDto" class="comment.CommentDto"/>
 	<jsp:setProperty property="post_id" name="commentDto"/>
-	<jsp:useBean id="commentDao" class="comment_bean.CommentDao"/>
-	<jsp:useBean id="UserDAO" class="user.UserDAO"/>
+	<jsp:useBean id="commentDao" class="comment.CommentDao"/>
+	<jsp:useBean id="userDao" class="user.UserDao"/>
 <%
 	Vector vec = (Vector)commentDao.getComment(detailDto.getPost_id());
 	
 	String userId = (String)session.getAttribute("sessionID");
 
-	UserBean user = (UserBean)UserDAO.getUser(userId);
+	UserDto user = (UserDto)userDao.getUser(userId);
 	String now_user_nickname = user.getUser_nickname();
 %>
 	<h3>댓글 <%=vec.size()%> 개</h3>

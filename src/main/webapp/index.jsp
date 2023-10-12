@@ -2,12 +2,12 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Place with your dog</title>
 <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" />
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-<link rel="stylesheet" href="Untitled-1.css">
+<link rel="stylesheet" href="index.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500&display=swap" rel="stylesheet">
@@ -28,7 +28,7 @@
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="#">식당</a></li>
               <li><a class="dropdown-item" href="#">병원</a></li>
-              <li><a class="dropdown-item" href="place/cafe/place_cafe_list.jsp?p_category=cafe">카페</a></li>
+              <li><a class="dropdown-item" href="place/cafe/place_cafe_list.jsp?place_category=cafe">카페</a></li>
               <li><a class="dropdown-item" href="#">애견카페</a></li>
               <li><a class="dropdown-item" href="#">숙소</a></li>
               <li><a class="dropdown-item" href="#">애견유치원</a></li>
@@ -133,10 +133,12 @@
       </div>
 
       <button class="carousel-control-prev" type="button" data-bs-target="#hero-carousel" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span> <span class="visually-hidden">Previous</span>
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
       </button>
       <button class="carousel-control-next" type="button" data-bs-target="#hero-carousel" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span> <span class="visually-hidden">Next</span>
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
       </button>
     </div>
 

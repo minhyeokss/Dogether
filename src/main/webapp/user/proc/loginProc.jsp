@@ -1,6 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
-<%@ page import="user.UserDAO" %>
-<jsp:useBean id="dao" class="user.UserDAO" />
+<%@ page import="user.UserDao" %>
+<jsp:useBean id="userDao" class="user.UserDao" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,7 +17,7 @@
     String user_pw = request.getParameter("user_pw");
     
     // DB에서 아이디, 비밀번호 확인
-    int check = dao.loginCheck(user_id, user_pw);
+    int check = userDao.loginCheck(user_id, user_pw);
     session = request.getSession();
     // URL 및 로그인관련 전달 메시지
     String msg = "";

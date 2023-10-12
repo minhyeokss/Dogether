@@ -3,7 +3,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.util.*" %>
-<%@ page import="review_boardbean.*" %>
+<%@ page import="post.*" %>
 <%!
 	int totalRecord = 0; // 총 글의 갯수
 	int numPerPage = 3; // 한 페이지 당 보여질 글 갯수
@@ -51,7 +51,7 @@
 	}
 </script>
 <body>
-<jsp:useBean id="dao" class="review_boardbean.BoardDao"/>
+<jsp:useBean id="postDao" class="post.PostDao"/>
 <%
 	request.setCharacterEncoding("UTF-8");
 %>
@@ -60,10 +60,10 @@
 	<form method="post" name="search" action="Review_board_list.jsp">
 		<div style="float: right;">
 			<select name="option" size="1">
-				<option value="t" selected>제목</option>
-				<option value="c">내용</option>
-				<option value="tc">제목+내용</option>
-				<option value="n">닉네임</option>
+				<option value="title" selected>제목</option>
+				<option value="content">내용</option>
+				<option value="title+content">제목+내용</option>
+				<option value="nickname">닉네임</option>
 			</select> 
 			<input type="text" name="searchWord" placeholder="검색" />
 			<input type="submit" value="검색" onClick="check()"/>
@@ -72,30 +72,29 @@
 	<br><br>
 	<div class="container">
 	
-	<%	
+	<%
 		String option =request.getParameter("option");
-		String searchWord = request.getParameter("searchWord");
-		
-		Vector vector = (Vector)dao.getReviewList(option, searchWord);
-		
-		totalRecord = vector.size();
-		totalPage = (int)Math.ceil((double)totalRecord / numPerPage);
-		
-		if(request.getParameter("nowPage") != null )
-			nowPage = Integer.parseInt(request.getParameter("nowPage"));
-		
-		if(request.getParameter("nowBlock") != null )
-			nowBlock = Integer.parseInt(request.getParameter("nowBlock"));
-		
-		beginPerPage = nowPage * numPerPage;
-		totalBlock =(int) Math.ceil((double)totalPage / pagePerBlock);
-		
-		for (int i=beginPerPage; i<beginPerPage + numPerPage; i++) {
-			if(i == totalRecord)
-				break;
-			BoardDto dto = (BoardDto)vector.get(i);
-	
-	%>
+								String searchWord = request.getParameter("searchWord");
+								
+								Vector vector = (Vector)postDao.getPostList(option, searchWord);
+								
+								totalRecord = vector.size();
+								totalPage = (int)Math.ceil((double)totalRecord / numPerPage);
+								
+								if(request.getParameter("nowPage") != null )
+									nowPage = Integer.parseInt(request.getParameter("nowPage"));
+								
+								if(request.getParameter("nowBlock") != null )
+									nowBlock = Integer.parseInt(request.getParameter("nowBlock"));
+								
+								beginPerPage = nowPage * numPerPage;
+								totalBlock =(int) Math.ceil((double)totalPage / pagePerBlock);
+								
+								for (int i=beginPerPage; i<beginPerPage + numPerPage; i++) {
+									if(i == totalRecord)
+										break;
+									PostDto dto = (PostDto)vector.get(i);
+		%>
 		<div class="place">
 			<div class="image">
 				<!-- image 있어야함 --> <!-- 그림 클릭해도 되게끔 만들기 -->

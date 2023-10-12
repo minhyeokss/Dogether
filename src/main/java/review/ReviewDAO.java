@@ -10,10 +10,10 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
-import place.PlaceBean;
+import place.PlaceDto;
 
-public class ReviewDAO {
-	/*
+public class ReviewDao {
+    /*
      * Field
      */
 
@@ -27,12 +27,12 @@ public class ReviewDAO {
      */
 
     // Default Constructor
-    public ReviewDAO() {
+    public ReviewDao() {
         try {
             Context ctx = new InitialContext();
             ds = (DataSource) ctx.lookup("java:comp/env/jdbc/myoracle");
         } catch (Exception e) {
-            System.out.println("PlaceDAO:" + e);
+            System.out.println("ReviewDao() : " + e);
         }
     }
 
@@ -72,9 +72,8 @@ public class ReviewDAO {
             conn = ds.getConnection();
             pstmt = conn.prepareStatement(sql);
             rs = pstmt.executeQuery();
-            
             while (rs.next()) {
-                ReviewBean review = new ReviewBean();
+                ReviewDto review = new ReviewDto();
                 review.setReview_id(rs.getInt("review_id"));
                 review.setReview_title(rs.getString("review_title"));
                 review.setReview_content(rs.getString("review_content"));
@@ -84,10 +83,11 @@ public class ReviewDAO {
                 vector.add(review);
             }
         } catch (Exception e) {
-            System.out.println("getPlaceList() : " + e);
+            System.out.println("getReviewList() : " + e);
         } finally {
             freeConnection();
         }
         return vector;
     }
+
 }

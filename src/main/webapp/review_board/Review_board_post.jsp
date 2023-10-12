@@ -10,12 +10,12 @@
 <title>Insert title here</title>
 </head>
 <body>
-<jsp:useBean id="dto" class="user.UserBean"/>
-<jsp:useBean id="dao" class="user.UserDAO"/>
+<jsp:useBean id="dto" class="user.UserDto"/>
+<jsp:useBean id="dao" class="user.UserDao"/>
 <%
-	String user_id = (String)session.getAttribute("sessionID");
+String user_id = (String)session.getAttribute("sessionID");
 	
-	UserBean user = (UserBean)dao.getUser(user_id);
+	UserDto user = (UserDto)dao.getUser(user_id);
 	String user_nickname = user.getUser_nickname();
 %>
 	<h1>후기 게시판</h1>

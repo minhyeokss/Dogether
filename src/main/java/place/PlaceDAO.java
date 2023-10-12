@@ -11,7 +11,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
-public class PlaceDAO {
+public class PlaceDao {
     /*
      * Field
      */
@@ -26,7 +26,7 @@ public class PlaceDAO {
      */
 
     // Default Constructor
-    public PlaceDAO() {
+    public PlaceDao() {
         try {
             Context ctx = new InitialContext();
             ds = (DataSource) ctx.lookup("java:comp/env/jdbc/myoracle");
@@ -66,7 +66,7 @@ public class PlaceDAO {
 
     // place_cafe_list.jsp
     public List getPlaceList(String place_category) {
-        String sql = "select * from tblplace where p_category='" + place_category + "'";
+        String sql = "select * from tblplace where place_category='" + place_category + "'";
         Vector vector = new Vector();
         try {
             conn = ds.getConnection();
@@ -74,13 +74,13 @@ public class PlaceDAO {
             rs = pstmt.executeQuery();
 
             while (rs.next()) {
-                PlaceBean place = new PlaceBean();
+                PlaceDto place = new PlaceDto();
                 place.setPlace_name(rs.getString("place_name"));
                 place.setPlace_category(rs.getString("place_category"));
                 place.setPlace_address(rs.getString("place_address"));
                 place.setPlace_call(rs.getString("place_call"));
                 place.setPlace_id(rs.getInt("place_id"));
-                place.setPlace_score(rs.getInt("place_score"));
+                place.setPlace_score(rs.getFloat("place_score"));
                 vector.add(place);
             }
         } catch (Exception e) {
@@ -92,9 +92,9 @@ public class PlaceDAO {
     }
 
     // place_cafe_detail.jsp
-    public PlaceBean readPlace(String place_id) {
+    public PlaceDto readPlace(String place_id) {
         String sql = "select * from tblplace where place_id=" + place_id;
-        PlaceBean place = new PlaceBean();
+        PlaceDto place = new PlaceDto();
         try {
             conn = ds.getConnection();
             pstmt = conn.prepareStatement(sql);
