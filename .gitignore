@@ -2,8 +2,6 @@ HELP.md
 .gradle
 build/
 gradle/
-.classpath
-.project
 .settings
 
 # Compiled class file
@@ -19,7 +17,6 @@ gradle/
 .mtj.tmp/
 
 # Package Files #
-*.jar
 *.war
 *.nar
 *.ear
