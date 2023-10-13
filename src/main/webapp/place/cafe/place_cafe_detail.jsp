@@ -1,8 +1,13 @@
 <%@ page import="java.util.*"%>
 <%@ page import="place.*"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="review.*" %>
 <jsp:useBean id="placeDao" class="place.PlaceDao" />
 <jsp:useBean id="placeDto" class="place.PlaceDto" />
+ <jsp:useBean id="reviewDao" class="review.ReviewDao"/>
+ <jsp:useBean id="reviewDto" class="review.ReviewDto"/>
+ <jsp:useBean id="userDao" class="user.UserDao"/>
+ <jsp:useBean id="userDto" class="user.UserDto"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,7 +27,7 @@
 <body>
   <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
-      <a class="navbar-brand" href="Main.html">Logo</a>
+      <a class="navbar-brand" href="../../index.jsp">Logo</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -170,11 +175,56 @@
       <i class="fa-solid fa-tag"></i>#주차장 #실내 #토요일 영업 #일요일 영업 #소형견 #중형견
     </div>
   </div>
+<br><br>
+  <!-- 리뷰 등록 -->
+  
+  <%
+  	int place_id = Integer.parseInt(request.getParameter("place_id"));
+  	String user_id = (String)session.getAttribute("sessionID");
+  	userDto = userDao.getUser(user_id);
+ 
+  %>
+	  <div>
+		  <form method="post" action="../review_proc.jsp">
+		  	<input type="hidden" name="place_id" value="<%=place_id %>"/>
+		  	<input type="text" name="user_nickname" value="<%=userDto.getUser_nickname() %>" readonly/><br>
+		  	<input type="text" name="review_starRating" placeholder="별점 입력"/><br>
+		  	<input type="text" name="review_title" placeholder="댓글 제목을 입력하세요."/><br>
+		  	<textarea rows="3" style="width:50%;" name="review_content" placeholder="댓글을 입력하세요."></textarea>
+		  	<input type="submit" value="댓글 달기"/>
+		  </form>
+	  </div>
+  <br><br>
+  
 
+<!-- 리뷰 리스트 -->  
+<%
+  	Vector vec = (Vector)reviewDao.getReviewList(place_id);
+  	
+  	for (int i=0; i<vec.size(); i++){
+  		ReviewDto review = (ReviewDto) vec.get(i);
+  %>
+  	<hr>
+  	<h5><%=review.getReview_title() %></h5>
+  	<%=review.getReview_starRating() %>점 | <%=review.getReview_regdate() %><br>
+  	<%=review.getReview_content() %>
+  <%
+ 	 if(user_id.equals(review.getUser_id())){
+ %>
+ 	<input type="button" value="수정" onClick="location='../review_update.jsp?review_id=<%=review.getReview_id() %>'"/>
+ 	<input type="button" value="삭제" onClick="location='../review_delete.jsp?review_id=<%=review.getReview_id()%>'"/>
+ <%
+ 	 }
+  	}
+  	
+  %>
+
+ <br><br>
+ 
   <img class="mapimage" src="./Img/Capture.png" alt="">
   <%
-  String p_id = request.getParameter("p_id");
-  placeDto = placeDao.readPlace(p_id);
+  //int place_id = Integer.parseInt(request.getParameter("place_id")); // 댓글 위에 선언해놈
+  placeDto = placeDao.readPlace(place_id);
   %>
   <%=placeDto.getPlace_category()%><br>
   <%=placeDto.getPlace_name()%><br>

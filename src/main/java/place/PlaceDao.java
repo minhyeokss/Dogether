@@ -92,7 +92,7 @@ public class PlaceDao {
     }
 
     // place_cafe_detail.jsp
-    public PlaceDto readPlace(String place_id) {
+    public PlaceDto readPlace(int place_id) {
         String sql = "select * from tblplace where place_id=" + place_id;
         PlaceDto place = new PlaceDto();
         try {
