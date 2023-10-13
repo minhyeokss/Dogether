@@ -1,147 +1,57 @@
-<%@ page contentType="text/html; charset=UTF-8" %>
-<!DOCTYPE html>
+<%@ page contentType="text/html; charset=UTF-8"%>
+<!doctype html>
 <html lang="ko">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-<<<<<<< HEAD
-        <title>로그인</title>
+        <title>Place with your dog</title>
         <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css"/>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-        <link rel="stylesheet" href="Login.css">
+        <link href="login.css?after" rel="stylesheet">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500&display=swap" rel="stylesheet">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
         <script src="https://kit.fontawesome.com/8855691a8d.js" crossorigin="anonymous"></script>
-<%
-    request.setCharacterEncoding("UTF-8");
-%>
-<script defer>
-    function checkValue(){
-        inputForm = eval("documnet.loginInfo");
-        if(!inputForm.user_id.value){
-            alert("아이디를 입력하세요");
-            inputForm.user_id.focus();
-            return false;
-        }
-        if(!inputForm.user_pw.value){
-            alert("비밀번호를 입력하세요");
-            inputForm.user_pw.focus();
-            return false;
-        }
-    }
-    
-    // 회원가입 버튼 클릭 시 회원가입 화면으로 이동
-    function goSignup() {
-        location.href = "signUp.jsp";
-    }
+	    <script defer>
+	    function checkValue(){
+	        inputForm = eval("document.loginInfo");
+	        if(!inputForm.user_id.value){
+	            alert("아이디를 입력하세요");
+	            inputForm.user_id.focus();
+	            return false;
+	        }
+	        if(!inputForm.user_pw.value){
+	            alert("비밀번호를 입력하세요");
+	            inputForm.user_pw.focus();
+	            return false;
+	        }
+	    }
+	    
 </script>
+    
     </head>
 
     <body>
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
-            <a class="navlogo" href="Main.html">
+            <a class="navlogo" href="../../index.jsp">
                 Logo
             </a>
         </nav>
 
         <div class="frontbar">
-            <div class="loginbar active">로그인 하기</div>
-            <div class="signbar">회원가입 하기</div>
-            <div class="findbar">ID/PW 찾기</div>
+            <a href="login.jsp"><div class="loginbar active">로그인 하기</div></a>
+		    <a href="signUp.jsp"><div class="signbar">회원가입 하기</div></a>
+		    <a href=""><div class="findbar">ID/PW 찾기</div></a>
         </div>
 
         <div class="navout">
             <h1>로그인</h1>
+            <form name="loginInfo" action="../proc/loginProc.jsp" method="post" onsubmit="return checkValue()" >
             <div class="input">
                 <div class="input-group flex-nowrap">
                     <span class="input-group-text" id="addon-wrapping"><i class="fa-solid fa-user"></i></span>
-                    <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="addon-wrapping">
-                </div>
-                <div class="input-group flex-nowrap">
-                    <span class="input-group-text" id="addon-wrapping"><i class="fa-solid fa-key"></i></span>
-                    <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-                </div>
-                <i class="fa-solid fa-eye"></i>
-            </div>
-           
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                <label class="form-check-label" for="flexCheckDefault">로그인 유지하기</label>
-            </div>
-            
-            <div class="social">
-                <img src="./Img/kakao.png" href="#" alt="kakao">
-                <img src="./Img/Naver.png" href="#" alt="naver">
-                <img src="./Img/Google.png" href="#" alt="google">
-            </div>
-            <button type="button" class="btn btn-primary">로그인</button>
-        </div>
-
-        
-
-    </body>
-</html>
-
-<html>
-<head>
-=======
-        <title>Place with your dog</title>
-        <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css"/>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-        <link rel="stylesheet" href="login.css">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500&display=swap" rel="stylesheet">
-        <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-        <script defer src="https://kit.fontawesome.com/8855691a8d.js" crossorigin="anonymous"></script>
-        <script defer>
-            function checkValue() {
-                inputForm = eval("documnet.loginInfo");
-                if (!inputForm.user_id.value) {
-                    alert("아이디를 입력하세요");
-                    inputForm.user_id.focus();
-                    return false;
-                }
-                if (!inputForm.user_pw.value) {
-                    alert("비밀번호를 입력하세요");
-                    inputForm.user_pw.focus();
-                    return false;
-                }
-            }
-
-            // 회원가입 버튼 클릭 시 회원가입 화면으로 이동
-            function goSignup() {
-                location.href = "signUp.jsp";
-            }
-        </script>
-    </head>
-
-    <body>
->>>>>>> bf29750f3bef6026b2dd4f82d741d29e1ff3fae1
-<%
-    request.setCharacterEncoding("UTF-8");
-%>
-        <nav class="navbar navbar-expand-lg bg-body-tertiary">
-            <a class="navlogo" href="Main.html">
-                Logo
-            </a>
-        </nav>
-
-        <div class="frontbar">
-            <div class="loginbar active">로그인 하기</div>
-            <div class="signbar">회원가입 하기</div>
-            <div class="findbar">ID/PW 찾기</div>
-        </div>
-
-        <div class="navout">
-            <h1>로그인</h1>
-            <div class="input">
-                <form name="loginInfo" method="post" action="../proc/loginProc.jsp">
-                <div class="input-group flex-nowrap">
-                    <span class="input-group-text" id="addon-wrapping"><i class="fa-solid fa-user"></i></span>
-                    <input type="text" name="user_id" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="addon-wrapping">
+                    <input type="text" name="user_id" class="form-control" placeholder="UserID" aria-label="UserID" aria-describedby="addon-wrapping">
                 </div>
                 <div class="input-group flex-nowrap">
                     <span class="input-group-text" id="addon-wrapping"><i class="fa-solid fa-key"></i></span>
@@ -154,25 +64,17 @@
                 <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
                 <label class="form-check-label" for="flexCheckDefault">로그인 유지하기</label>
             </div>
-            </form>
-            <div class="social">
+            
+            <div class="social"><!--  
                 <img src="./Img/kakao.png" href="#" alt="kakao">
                 <img src="./Img/Naver.png" href="#" alt="naver">
-                <img src="./Img/Google.png" href="#" alt="google">
+                <img src="./Img/Google.png" href="#" alt="google">-->
             </div>
-            <button type="button" class="btn btn-primary" onclick="return checkValue()">로그인</button>
+            <input type="submit" value="로그인" class="btn btn-primary">
+            </form>
         </div>
-    <%
-        String msg=request.getParameter("msg");
     
-        if(msg!=null && msg.equals("0")){
-            out.println("<br>");
-            out.println("<font color='red' size='5'>비밀번호를 확인해주세요.</font>");
-        }
-        else if(msg!=null && msg.equals("-1")){
-            out.println("<br>");
-            out.println("<font color='red' size='5'>아이디를 확인해주세요.</font>");
-        }
-    %>
+        
+
     </body>
 </html>

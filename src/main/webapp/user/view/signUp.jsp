@@ -63,13 +63,20 @@
       alert("날짜를 입력하세요.");
       return false;
     }*/
-    document.form.submit();
+    
+    if (!document.getElementById('agreement').checked) {
+        alert("회원 약관에 동의하세요.");
+        return false;
+    }
+
+    if (!document.getElementById('privacy').checked) {
+        alert("개인 정보 수집 및 이용에 동의하세요.");
+        return false;
+    }
+    
+    document.userInfo.submit();
   }
 
-  // 취소 버튼 클릭 시 로그인 화면으로 이동
-  function goLogin() {
-    location.href = "login.jsp";
-  }
 </script>
     </head>
     <body>
@@ -79,9 +86,9 @@
             </div>
         </nav>
         <div class="frontbar">
-            <div class="loginbar">로그인 하기</div>
-            <div class="signbar active">회원가입 하기</div>
-            <div class="findbar">ID/PW 찾기</div>
+            <a href="login.jsp"><div class="loginbar active">로그인 하기</div></a>
+            <a href="signUp.jsp"><div class="signbar">회원가입 하기</div></a>
+            <a href=""><div class="findbar">ID/PW 찾기</div></a>
         </div>
 
         <div class="navout">
@@ -159,11 +166,12 @@
                     <span class="input-group-text Gender" id="basic-addon1">성별</span>
                     &nbsp;&nbsp;&nbsp;&nbsp;
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" id="inlineRadio1" value="option1" name="user_gender" value="M" checked>
+                        <!-- gender 테이블 컬럼의 크기 수정 필요. 전달하는 값이 큼 -->
+                        <input class="form-check-input" type="radio" id="inlineRadio1" value="M" name="user_gender" value="M" checked>
                         <label class="form-check-label" for="inlineRadio1">남성</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" id="inlineRadio2" value="option2" name="user_gender" value="F">
+                        <input class="form-check-input" type="radio" id="inlineRadio2" value="F" name="user_gender" value="F">
                         <label class="form-check-label" for="inlineRadio2">여성</label>
                     </div>
                 </div>
@@ -188,8 +196,8 @@
                     <label class="btn btn-outline-secondary" for="btn-check-2-outlined">보기</label><br>
                     &nbsp;&nbsp;&nbsp;&nbsp;
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                        <label class="form-check-label" for="inlineCheckbox1">동의함</label>
+                        <input class="form-check-input" type="checkbox" id="agreement" value="option1">
+                        <label class="form-check-label" for="agreement">동의함</label>
                     </div>
                 </span>
                 <br>
@@ -199,14 +207,15 @@
                     <label class="btn btn-outline-secondary" for="btn-check-2-outlined">보기</label><br>
                     &nbsp;&nbsp;&nbsp;&nbsp;
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                        <label class="form-check-label" for="inlineCheckbox1">동의함</label>
+                        <input class="form-check-input" type="checkbox" id="privacy" value="option1">
+                        <label class="form-check-label" for="privacy">동의함</label>
                     </div>
                 </span>
                 <br>
                 <span class="icon-botton">
                     <input type="checkbox" class="btn-check" id="btn-check" autocomplete="off">
-                    <label class="btn btn-primary" for="btn-check">회원가입</label>
+                    <button type="submit" class="btn btn-primary">회원가입</button>
+                   <!--   <label class="btn btn-primary" for="btn-check">회원가입</label>-->
                 </span>
                 </form>
             </div>
@@ -214,154 +223,3 @@
 </body>
 </html>
 
-<html>
-<head>
-<script defer>
-  //필수 정보 입력되었는지 확인
-  function checkValue() {
-    if (!document.userInfo.user_id.value) {
-      alert("아이디를 입력하세요.");
-      return false;
-    }
-
-    if (!document.userInfo.user_pw.value) {
-      alert("비밀번호를 입력하세요.");
-      return false;
-    }
-
-    // 비밀번호 동일한지 확인
-    if (document.userInfo.user_pw.value != document.userInfo.user_pwcheck.value) {
-      alert("비밀번호를 동일하게 입력하세요.");
-      return false;
-    }
-
-    if (!document.userInfo.user_email.value) {
-      alert("이메일을 입력하세요.");
-      return false;
-    }
-
-    // 이메일 인증 구현
-    //if(!document.userInfo.emailCode.value){
-    //  alert("이메일 인증 코드를 입력하세요.");
-    //  return false;
-    //}
-	console.log(document.userInfo.user_name.value);
-	console.log(2);
-    if (!document.userInfo.user_name.value) {
-      alert("이름을 입력하세요.");
-      return false;
-    }
-
-    if (!document.userInfo.user_nickname.value) {
-      alert("닉네임을 입력하세요.");
-      return false;
-    }
-/*
-    if (!document.userInfo.birthyy.value) {
-      alert("연도를 입력하세요.");
-      return false;
-    }
-
-    if (!document.userInfo.birthdd.value) {
-      alert("날짜를 입력하세요.");
-      return false;
-    }*/
-    document.form.submit();
-  }
-
-  // 취소 버튼 클릭 시 로그인 화면으로 이동
-  function goLogin() {
-    location.href = "login.jsp";
-  }
-</script>
-<meta charset="UTF-8">
-<title>회원가입</title>
-</head>
-<body>
-  <h1>회원가입</h1>
-  <hr>
-  <!-- 입력한 값 전송 -->
-  <form method="post" action="../proc/signUpProc.jsp" name="userInfo"
-    onsubmit="return checkValue()">
-    <table>
-      <tr>
-        <td id="title">아이디</td>
-        <td>
-        <input type="text" name="user_id"> 
-        <input type="button"
-          value="중복확인">
-          </td>
-      </tr>
-
-      <tr>
-        <td id="title">비밀번호</td>
-        <td><input type="password" name="user_pw"></td>
-      </tr>
-
-      <tr>
-        <td id="title">비밀번호 확인</td>
-        <td><input type="password" name="user_pwcheck"></td>
-      </tr>
-
-      <tr>
-        <td id="title">이메일 등록</td>
-        <td><input type="text" name="user_email"> <input
-          type="button" value="인증 요청"></td>
-      </tr>
-
-      <tr>
-        <td id="title">인증 코드</td>
-        <td><input type="text" name="emailCode"></td>
-      </tr>
-
-      <tr>
-        <td id="title">이름</td>
-        <td><input type="text" name="user_name"></td>
-      </tr>
-
-      <tr>
-        <td id="title">닉네임</td>
-        <td><input type="text" name="user_nickname"> <input
-          type="button" value="중복확인"></td>
-      </tr>
-
-      <tr>
-        <td id="title">생년월일</td>
-        <td><input type="text" name="birthyy" maxlength="4"
-          placeholder="년(4자)" size="6"> <select name="birthmm">
-            <option value="">월</option>
-            <option value="01">1</option>
-            <option value="02">2</option>
-            <option value="03">3</option>
-            <option value="04">4</option>
-            <option value="05">5</option>
-            <option value="06">6</option>
-            <option value="07">7</option>
-            <option value="08">8</option>
-            <option value="09">9</option>
-            <option value="10">10</option>
-            <option value="11">11</option>
-            <option value="12">12</option>
-        </select> <input type="text" name="birthdd" maxlength="2" placeholder="일"
-          size="4"></td>
-      </tr>
-
-      <tr>
-        <td id="title">성별</td>
-        <td><input type="radio" name="user_gender" value="M" checked>남
-          <input type="radio" name="user_gender" value="F">여</td>
-      </tr>
-
-      <tr>
-        <td id="title">회원 종류</td>
-        <td><input type="radio" name="user_grade" value="1" checked>판매자
-          회원 <input type="radio" name="user_grade" value="2">일반 회원</td>
-      </tr>
-
-    </table>
-
-    <br> <input type="submit" value="가입" /> <input type="button"
-      value="취소" onclick="goLogin()">
-  </form>
-</body>
-</html>
