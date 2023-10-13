@@ -72,7 +72,6 @@ public class PlaceDao {
             conn = ds.getConnection();
             pstmt = conn.prepareStatement(sql);
             rs = pstmt.executeQuery();
-
             while (rs.next()) {
                 PlaceDto placeDto = new PlaceDto();
                 placeDto.setPlace_name(rs.getString("place_name"));
@@ -99,7 +98,6 @@ public class PlaceDao {
             conn = ds.getConnection();
             pstmt = conn.prepareStatement(sql);
             rs = pstmt.executeQuery(sql);
-
             if (rs.next()) {
                 placeDto.setPlace_name(rs.getString("place_name"));
                 placeDto.setPlace_category(rs.getString("place_category"));
