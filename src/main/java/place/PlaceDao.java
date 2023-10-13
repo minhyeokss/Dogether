@@ -66,11 +66,12 @@ public class PlaceDao {
 
     // place_cafe_list.jsp
     public List getPlaceList(String place_category) {
-        String sql = "select * from tblplace where place_category=" + place_category;
+        String sql = "select * from tblplace where place_category=?";
         Vector vector = new Vector();
         try {
             conn = ds.getConnection();
             pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, place_category);
             rs = pstmt.executeQuery();
             while (rs.next()) {
                 PlaceDto placeDto = new PlaceDto();

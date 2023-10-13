@@ -130,20 +130,13 @@ input.form-control{
     display: flex;
     height: 100%;
 }
-/*
-position: absolute;
-transform: translate(-50%, -50%);
-
-display: flex;
-justify-content: center;
-*/
 
 h4{
     margin-top: 6px;
 }
 
 .btn_1, h1{
-    margin-left: 500px;
+    margin-left: 600px;
 }
 
 .pwcheck{
@@ -153,19 +146,9 @@ h4{
 .container_4{
     padding: 50px;
     width: calc(100% - 350px);
-    height: 900px;
-    display: flex;
-    margin-left: 350px;
-}
-
-.container_5{
-    padding: 50px;
-    width: calc(100% - 350px);
     height: 1600px;
     display: flex;
     margin-left: 350px;
-    background-color: orange;
-    border: dashed 1px black;
 }
 
 
@@ -188,7 +171,6 @@ input.form-control.me-2{
 }
 
 div.nextBtn{
-	
     margin-left: 30vw;
     margin-top: 50px;
     margin-bottom: 100px;
@@ -206,16 +188,103 @@ div.col {
     width: 450px
 }
 
-img.card-img-top{
-    height: 150px;
+div.card-body{
+    overflow: hidden;
 }
+
+/* 내 정보 수정 */
+
+input.form-control{
+    width: 400px;
+}
+
+/* -------------------------*/
 
 /*   후기 게시판 세부   */
 .child_3{
-    background-color: aquamarine;
+    background-color: lightgray;
+    margin-top: 40px;
 }
 
+button.btn.btn-secondary{
+    margin: auto 10px;
+}
 
+.container_5{
+    padding: 50px;
+    width: calc(100% - 350px);
+    height: 1500px;
+    display: flex;
+}
 
+#Announcement{
+    text-align: center;
+    padding-top: 20px;
+}
 
+.hits{
+    text-align: left;
+    margin-left: 20px;
+    float:left;
+}
+
+.right_content{
+    margin-right: 20px;
+    float:right;
+}
+
+img{
+    width: 150px;
+    height: 150px;
+    overflow: hidden;
+    padding: 15px;
+    border-radius: 20px;
+}
+
+.content_1{
+    padding: 20px;
+}
+
+div.btn_cen{
+    margin-left: 900px;
+}
+
+select.form-select{
+    width: 120px;
+    margin-left: 820px;
+}
+
+li.nav-item.dropdown-center::marker{
+    list-style:none;
+}
+
+.setting {
+    margin-left: 1400px;
+}
+
+.dropdown-menu {
+    --bs-dropdown-min-width: 0;
+}
+
+.comment_1{
+    display: flex;
+}
+
+ul.dropdown-menu{
+    margin-right: 50px;
+}
+
+.header_1{
+    display: flex;
+}
+
+.child_4{
+    display: flex;
+    margin-top: 100px;
+}
+
+.fa-review{
+    color:rgb(170, 170, 170);
+    margin-left:1100px;
+}
 /* ----------------- */

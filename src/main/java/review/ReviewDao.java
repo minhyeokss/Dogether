@@ -117,7 +117,7 @@ public class ReviewDao {
  // 임시 리뷰수정 보여주기
     public ReviewDto getReviewUpdate(int review_id) {
         String sql =
-                "SELECT user_nickname, review_content, user_id, place_id, review_starrating FROM tblreview WHERE review_id=?";
+                "SELECT user_nickname, review_title, review_content, user_id, place_id, review_starrating FROM tblreview WHERE review_id=?";
         ReviewDto reviewDto = new ReviewDto();
         try {
             conn = ds.getConnection();
@@ -126,6 +126,7 @@ public class ReviewDao {
             rs = pstmt.executeQuery();
             while (rs.next()) {
             	reviewDto.setUser_nickname(rs.getString("user_nickname"));
+            	reviewDto.setReview_title(rs.getString("review_title"));
             	reviewDto.setReview_content(rs.getString("review_content"));
             	reviewDto.setPlace_id((rs.getInt("place_id")));
             	reviewDto.setReview_starRating(rs.getInt("review_starRating"));
