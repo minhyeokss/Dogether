@@ -37,7 +37,7 @@
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="#">식당</a></li>
               <li><a class="dropdown-item" href="#">병원</a></li>
-              <li><a class="dropdown-item" href="#">카페</a></li>
+              <li><a class="dropdown-item" href="place_cafe_list.jsp?place_category=cafe">카페</a></li>
               <li><a class="dropdown-item" href="#">애견카페</a></li>
               <li><a class="dropdown-item" href="#">숙소</a></li>
               <li><a class="dropdown-item" href="#">애견유치원</a></li>
@@ -56,10 +56,10 @@
 
           <li class="nav-item dropdown-center"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">마이페이지</a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">내정보 수정</a></li>
-              <li><a class="dropdown-item" href="#">비밀번호 변경</a></li>
+              <li><a class="dropdown-item" href="../../user/view/myInfo.jsp">내정보 수정</a></li>
+              <li><a class="dropdown-item" href="../../user/view/changePw.jsp">비밀번호 변경</a></li>
               <li><a class="dropdown-item" href="#">관심장소 모아보기</a></li>
-              <li><a class="dropdown-item" href="FavoPost.html">관심글 모아보기</a></li>
+              <li><a class="dropdown-item" href="../../favorite/favorite_post.html">관심글 모아보기</a></li>
               <li><a class="dropdown-item" href="#">활동내역</a></li>
             </ul></li>
         </ul>
@@ -70,7 +70,7 @@
           </a>
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="../../user/view/login.jsp">로그인</a></li>
-            <li><a class="dropdown-item">회원가입</a></li>
+            <li><a class="dropdown-item" href="../../user/view/signUp.jsp">회원가입</a></li>
             <li><a class="dropdown-item">ID/PW 찾기</a></li>
           </ul>
         </div>
@@ -126,13 +126,13 @@
     </div>
     <div class="carousel-inner">
       <div class="carousel-item active">
-        <img src="./Img/DogCafe1.jpg" class="d-block w-100" alt="...">
+        <img src="image/Cafe1.jpg" class="d-block w-100" alt="...">
       </div>
       <div class="carousel-item">
-        <img src="./Img/DogCafe2.jpg" class="d-block w-100" alt="...">
+        <img src="image/Cafe2.jpg" class="d-block w-100" alt="...">
       </div>
       <div class="carousel-item">
-        <img src="./Img/DogCafe3.jpg" class="d-block w-100" alt="...">
+        <img src="image/Cafe3.jpg" class="d-block w-100" alt="...">
       </div>
     </div>
     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
@@ -225,7 +225,7 @@
 
  <br><br>
  
-  <img class="mapimage" src="./Img/Capture.png" alt="">
+  <img class="mapimage" src="./image/Capture.png" alt="">
   
 </body>
 </html>
