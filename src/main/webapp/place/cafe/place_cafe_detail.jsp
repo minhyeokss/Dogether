@@ -138,12 +138,12 @@
     </button>
   </div>
 
-  <div class="catetitle">애견카페</div>
+  <div class="catetitle"><%=placeDto.getPlace_category()%></div>
   <br>
   <br>
   <br>
-  <div class="placetitle">어야가자 애견카페</div>
-  <div class="placescore">4.5</div>
+  <div class="placetitle"><%=placeDto.getPlace_name()%></div>
+  <div class="placescore"><%=placeDto.getPlace_score()%></div>
 
   <button type="button" class="btn btn-outline-dark likebtn">
     <i class="fa-regular fa-heart"></i>&nbsp;&nbsp;&nbsp;관심 등록하기
@@ -157,7 +157,7 @@
   <div class="placeintro">사랑하는 반려견과 행복하고 즐거운 시간을 보내실 수 있는 따뜻한 공간, 어야가자애견카페에 고객님을 초대합니다. 사랑하는 반려견과 행복하고 즐거운 시간을 보내실 수 있는 따뜻한 공간, 어야가자애견카페에 고객님을 초대합니다. 사랑하는 반려견과 행복하고 즐거운 시간을 보내실 수 있는 따뜻한 공간, 어야가자애견카페에 고객님을 초대합니다.</div>
   <div class="placeinfo">
     <div class="phone text">
-      <i class="fa-solid fa-phone"></i>010-1234-5678
+      <i class="fa-solid fa-phone"></i><%=placeDto.getPlace_call()%>
     </div>
     <div class="location text">
       <i class="fa-solid fa-location-dot"></i>서울 강남구 테헤란로39길 66 1층 어야가자

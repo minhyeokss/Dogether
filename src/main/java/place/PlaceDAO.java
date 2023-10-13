@@ -107,7 +107,7 @@ public class PlaceDao {
                 place.setPlace_call(rs.getString("place_call"));
                 place.setPlace_homepage(rs.getString("place_homepage"));
                 place.setPlace_id(rs.getInt("place_id"));
-                place.setPlace_score(rs.getInt("place_score"));
+                place.setPlace_score(rs.getFloat("place_score"));
             }
         } catch (Exception e) {
             System.out.println("readPlace() : " + e);
