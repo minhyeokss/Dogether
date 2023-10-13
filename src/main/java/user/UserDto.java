@@ -1,6 +1,7 @@
 package user;
 
 import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.util.Date;
 
 public class UserDto {
@@ -13,13 +14,21 @@ public class UserDto {
     private String user_gender;
     private Timestamp user_regdate;
     private int user_grade;
-    private Date user_birthday;
+    private Date userBirthday;
     // private String birthyy;
     // private String birthmm;
     // private String birthdd;
 
     public String getUser_id() {
         return user_id;
+    }
+
+    public Date getUser_birthday() {
+        return userBirthday;
+    }
+
+    public void setUser_birthday(Date userBirthday) {
+        this.userBirthday = userBirthday;
     }
 
     public void setUser_id(String user_id) {
@@ -82,12 +91,6 @@ public class UserDto {
         this.user_grade = user_grade;
     }
 
-    public Date getUser_birthday() {
-        return user_birthday;
-    }
-
-    public void setUser_birthday(Date user_birthday) {
-        this.user_birthday = user_birthday;
-    }
+   
 
 }
