@@ -137,6 +137,10 @@
       <span class="carousel-control-next-icon" aria-hidden="true"></span> <span class="visually-hidden">Next</span>
     </button>
   </div>
+  <%
+  String p_id = request.getParameter("p_id");
+  placeDto = placeDao.readPlace(p_id);
+  %>
 
   <div class="catetitle"><%=placeDto.getPlace_category()%></div>
   <br>
@@ -160,11 +164,11 @@
       <i class="fa-solid fa-phone"></i><%=placeDto.getPlace_call()%>
     </div>
     <div class="location text">
-      <i class="fa-solid fa-location-dot"></i>서울 강남구 테헤란로39길 66 1층 어야가자
+      <i class="fa-solid fa-location-dot"></i><%=placeDto.getPlace_address()%>
     </div>
     <div class="house text">
       <i class="fa-solid fa-house"></i>
-      <a href="https://uhyagazapetcafe.modoo.at/">https://uhyagazapetcafe.modoo.at/</a>
+      <a href="https://uhyagazapetcafe.modoo.at/"><%=placeDto.getPlace_homepage()%></a>
     </div>
     <div class="tag text">
       <i class="fa-solid fa-tag"></i>#주차장 #실내 #토요일 영업 #일요일 영업 #소형견 #중형견
@@ -172,15 +176,5 @@
   </div>
 
   <img class="mapimage" src="./Img/Capture.png" alt="">
-  <%
-  String p_id = request.getParameter("p_id");
-  placeDto = placeDao.readPlace(p_id);
-  %>
-  <%=placeDto.getPlace_category()%><br>
-  <%=placeDto.getPlace_name()%><br>
-  <%=placeDto.getPlace_score()%><br>
-  <%=placeDto.getPlace_call()%><br>
-  <%=placeDto.getPlace_address()%><br>
-  <%=placeDto.getPlace_homepage()%><br>
 </body>
 </html>

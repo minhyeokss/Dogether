@@ -50,7 +50,7 @@
               <li><a class="dropdown-item" href="user/view/myInfo.jsp">내정보 수정</a></li>
               <li><a class="dropdown-item" href="user/view/changePw.jsp">비밀번호 변경</a></li>
               <li><a class="dropdown-item" href="#">관심장소 모아보기</a></li>
-              <li><a class="dropdown-item" href="favorite/favorite_post.jsp">관심글 모아보기</a></li>
+              <li><a class="dropdown-item" href="favorite/favorite_post.html">관심글 모아보기</a></li>
               <li><a class="dropdown-item" href="#">활동내역</a></li>
             </ul></li>
         </ul>
