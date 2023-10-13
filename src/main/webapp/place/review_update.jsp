@@ -21,7 +21,8 @@
 		<input type="hidden" name="place_id" value="<%=reviewDto.getPlace_id() %>"/>
 		<input type="hidden" name="review_id" value="<%=review_id %>"/>
 		<input type="text" name="user_nickname" value="<%=reviewDto.getUser_nickname() %>" readonly/><br><br>
-		<textarea name="review_content" style="width:60%;height:20px;"><%=reviewDto.getReview_content() %></textarea><br><br>
+		댓글 제목: <input type="text" name="review_title" value="<%=reviewDto.getReview_title() %>"/><br><br>
+		댓글 내용: <textarea name="review_content" style="width:60%;height:20px;"><%=reviewDto.getReview_content() %></textarea><br><br>
 		<input type="submit" value="수정하기"/>
 	</form>
 	

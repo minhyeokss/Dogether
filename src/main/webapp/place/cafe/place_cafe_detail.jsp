@@ -49,7 +49,7 @@
           <li class="nav-item dropdown-center"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">커뮤니티</a>
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="#">공지사항</a></li>
-              <li><a class="dropdown-item" href="#">후기게시판</a></li>
+              <li><a class="dropdown-item" href="../../post/post_list.jsp">후기게시판</a></li>
               <li><a class="dropdown-item" href="#">홍보게시판</a></li>
               <li><a class="dropdown-item" href="#">뉴스/칼럼</a></li>
             </ul></li>
@@ -69,7 +69,7 @@
             <i class="fa-solid fa-circle-user fa-3x"></i>
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="Login.html">로그인</a></li>
+            <li><a class="dropdown-item" href="../../user/view/login.jsp">로그인</a></li>
             <li><a class="dropdown-item">회원가입</a></li>
             <li><a class="dropdown-item">ID/PW 찾기</a></li>
           </ul>
@@ -143,8 +143,8 @@
     </button>
   </div>
   <%
-  String p_id = request.getParameter("p_id");
-  placeDto = placeDao.readPlace(p_id);
+  int place_id = Integer.parseInt(request.getParameter("place_id"));
+  placeDto = placeDao.readPlace(place_id);
   %>
 
   <div class="catetitle"><%=placeDto.getPlace_category()%></div>
@@ -183,7 +183,6 @@
   <!-- 리뷰 등록 -->
   
   <%
-  	int place_id = Integer.parseInt(request.getParameter("place_id"));
   	String user_id = (String)session.getAttribute("sessionID");
   	userDto = userDao.getUser(user_id);
  
@@ -198,7 +197,7 @@
 		  	<input type="submit" value="댓글 달기"/>
 		  </form>
 	  </div>
-  <br><br>
+  <br><br><br><br>
   
 
 <!-- 리뷰 리스트 -->  
@@ -213,28 +212,20 @@
   	<%=review.getReview_starRating() %>점 | <%=review.getReview_regdate() %><br>
   	<%=review.getReview_content() %>
   <%
+  	
  	 if(user_id.equals(review.getUser_id())){
  %>
  	<input type="button" value="수정" onClick="location='../review_update.jsp?review_id=<%=review.getReview_id() %>'"/>
  	<input type="button" value="삭제" onClick="location='../review_delete.jsp?review_id=<%=review.getReview_id()%>'"/>
  <%
  	 }
-  	}
   	
+  	}
   %>
 
  <br><br>
  
   <img class="mapimage" src="./Img/Capture.png" alt="">
-  <%
-  //int place_id = Integer.parseInt(request.getParameter("place_id")); // 댓글 위에 선언해놈
-  placeDto = placeDao.readPlace(place_id);
-  %>
-  <%=placeDto.getPlace_category()%><br>
-  <%=placeDto.getPlace_name()%><br>
-  <%=placeDto.getPlace_score()%><br>
-  <%=placeDto.getPlace_call()%><br>
-  <%=placeDto.getPlace_address()%><br>
-  <%=placeDto.getPlace_homepage()%><br>
+  
 </body>
 </html>

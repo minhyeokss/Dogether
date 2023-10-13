@@ -15,7 +15,7 @@
 <jsp:setProperty property="*" name="reviewDto"/>
 <% 
 reviewDao.setReviewUpdate(reviewDto);
-response.sendRedirect("/cafe/place_cafe_detail.jsp?place_id="+ reviewDto.getPlace_id()); // 해당 글로 넘어가게 하기
+response.sendRedirect("cafe/place_cafe_detail.jsp?place_id="+ reviewDto.getPlace_id()); // 해당 글로 넘어가게 하기
 %>
 </body>
 </html>

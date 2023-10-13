@@ -43,7 +43,7 @@
           <li class="nav-item dropdown-center"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">커뮤니티</a>
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="#">공지사항</a></li>
-              <li><a class="dropdown-item" href="#">후기게시판</a></li>
+              <li><a class="dropdown-item" href="../../post/post_list.jsp">후기게시판</a></li>
               <li><a class="dropdown-item" href="#">홍보게시판</a></li>
               <li><a class="dropdown-item" href="#">뉴스/칼럼</a></li>
             </ul></li>
