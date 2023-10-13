@@ -43,7 +43,7 @@
           <li class="nav-item dropdown-center"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">커뮤니티</a>
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="#">공지사항</a></li>
-              <li><a class="dropdown-item" href="#">후기게시판</a></li>
+              <li><a class="dropdown-item" href="../../post/post_list.jsp">후기게시판</a></li>
               <li><a class="dropdown-item" href="#">홍보게시판</a></li>
               <li><a class="dropdown-item" href="#">뉴스/칼럼</a></li>
             </ul></li>
@@ -53,7 +53,7 @@
               <li><a class="dropdown-item" href="#">내정보 수정</a></li>
               <li><a class="dropdown-item" href="#">비밀번호 변경</a></li>
               <li><a class="dropdown-item" href="#">관심장소 모아보기</a></li>
-              <li><a class="dropdown-item" href="#">관심글 모아보기</a></li>
+              <li><a class="dropdown-item" href="../../favorite/favorite_post.html">관심글 모아보기</a></li>
               <li><a class="dropdown-item" href="#">활동내역</a></li>
             </ul></li>
         </ul>
@@ -61,9 +61,9 @@
         <div class="dropdown-center">
           <a class="nav-user dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-circle-user fa-3x"></i></a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="/ProjectDogApp/user/view/login.jsp">로그인</a></li>
-            <li><a class="dropdown-item" href="/ProjectDogApp/user/proc/logoutProc.jsp">로그아웃</a></li>
-            <li><a class="dropdown-item" href="/ProjectDogApp/user/view/signUp.jsp">회원가입</a></li>
+            <li><a class="dropdown-item" href="/Dogether/user/view/login.jsp">로그인</a></li>
+            <li><a class="dropdown-item" href="/Dogether/user/proc/logoutProc.jsp">로그아웃</a></li>
+            <li><a class="dropdown-item" href="/Dogether/user/view/signUp.jsp">회원가입</a></li>
             <li><a class="dropdown-item">ID/PW 찾기</a></li>
           </ul>
         </div>
@@ -153,7 +153,7 @@
       %>
 
       <div class="cards">
-        <a href="place_cafe_detail.jsp?p_id=<%=place.getPlace_id()%>" class="card mb-3" style="max-width: 600px; margin-top: 40px;">
+        <a href="place_cafe_detail.jsp?place_id=<%=place.getPlace_id()%>" class="card mb-3" style="max-width: 600px; margin-top: 40px;">
           <div class="row g-0">
             <div class="col-md-4">
               <img src="./image/Cafe<%=j + i * 2 + 1%>.jpg" class="img-fluid rounded-start" alt="...">
