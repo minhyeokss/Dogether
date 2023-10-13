@@ -153,7 +153,7 @@
       %>
 
       <div class="cards">
-        <a href="place_cafe_detail.jsp?p_id=<%=place.getPlace_id()%>" class="card mb-3" style="max-width: 600px; margin-top: 40px;">
+        <a href="place_cafe_detail.jsp?place_id=<%=place.getPlace_id()%>" class="card mb-3" style="max-width: 600px; margin-top: 40px;">
           <div class="row g-0">
             <div class="col-md-4">
               <img src="./image/Cafe<%=j + i * 2 + 1%>.jpg" class="img-fluid rounded-start" alt="...">

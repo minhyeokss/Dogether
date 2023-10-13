@@ -62,6 +62,8 @@
 	
 	<br><br>
 	
+	
+<!-- 댓글 등록하기 -->	
 	<jsp:useBean id="commentDto" class="comment.CommentDto"/>
 	<jsp:setProperty property="post_id" name="commentDto"/>
 	<jsp:useBean id="commentDao" class="comment.CommentDao"/>
@@ -74,6 +76,7 @@
 	UserDto user = (UserDto)userDao.getUser(userId);
 	String now_user_nickname = user.getUser_nickname();
 %>
+
 	<h3>댓글 <%=vec.size()%> 개</h3>
 	<form method="post" action="../comment/comment.jsp" >
 		<input type="hidden" value="<%=postDto.getPost_id()%>" name="post_id"/>
@@ -82,6 +85,8 @@
 		<input type="submit" value="댓글 달기"/>
 	</form><br>
 	<table width="80%" align="center" style="border-collapse:collapse;">
+
+<!-- 댓글 보여주기 -->
 <%
 	for(int i=0; i<vec.size(); i++){
 		CommentDto comment = (CommentDto)vec.get(i);
