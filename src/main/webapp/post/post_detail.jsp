@@ -30,7 +30,7 @@
 
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid">
-                <a class="navbar-brand" href="Untitled-1.html">Logo</a>
+                <a class="navbar-brand" href="../index.jsp">Logo</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -67,7 +67,7 @@
                                 <li><a class="dropdown-item" href="#">내정보 수정</a></li>
                                 <li><a class="dropdown-item" href="#">비밀번호 변경</a></li>
                                 <li><a class="dropdown-item" href="#">관심장소 모아보기</a></li>
-                                <li><a class="dropdown-item" href="#">관심글 모아보기</a></li>
+                                <li><a class="dropdown-item" href="../favorite/favorite_post.html">관심글 모아보기</a></li>
                                 <li><a class="dropdown-item" href="#">활동내역</a></li>
                             </ul>
                         </li>
@@ -204,8 +204,8 @@
                     <div class="setting">
                         <a class="dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-ellipsis-vertical fa-2xl" style="color: #050b15;"></i></a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="post_update.jsp?post_id=<%=postDto.getPost_id() %>">수정</a></li>
-                            <li><a class="dropdown-item" href="post_delete.jsp?post_id=<%=postDto.getPost_id() %>">삭제</a></li>
+                            <li><a class="dropdown-item" href="../comment/comment_update.jsp?comment_id=<%=comment.getComment_id() %>">수정</a></li>
+                            <li><a class="dropdown-item" href="../comment/comment_delete.jsp?comment_id=<%=comment.getComment_id() %>">삭제</a></li>
                         </ul>
                     </div>
 <%
