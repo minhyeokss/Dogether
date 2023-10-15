@@ -1,28 +1,26 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page contentType="text/html; charset=UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Dogether</title>
 </head>
 <body>
-<jsp:useBean id="commentDto" class="comment.CommentDto"/>
-<jsp:useBean id="commentDao" class="comment.CommentDao"/>
+  <jsp:useBean id="commentDao" class="comment.CommentDao" />
+  <jsp:useBean id="commentDto" class="comment.CommentDto" />
+  
+  <%
+  request.setCharacterEncoding("UTF-8");
+  %>
+  <jsp:setProperty property="*" name="commentDto" />
+  <%
+  String user_id = (String) session.getAttribute("sessionID");
+  commentDto.setUser_id(user_id);
+  int board_id = Integer.parseInt(request.getParameter("board_id"));
 
-<%
-	request.setCharacterEncoding("UTF-8");
-%>
-<jsp:setProperty property="*" name="commentDto"/>
-
-<%
-	String user_id = (String)session.getAttribute("sessionID");
-    commentDto.setUser_id(user_id);
-
-    commentDao.setComment(commentDto);
-	response.sendRedirect("../post/post_detail.jsp?post_id="+commentDto.getPost_id());
-
-%>
-
+  commentDao.setComment(commentDto);
+  response.sendRedirect(
+          "../post/post_detail.jsp?board_id=" + board_id + "&post_id=" + commentDto.getPost_id());
+  %>
 </body>
 </html>

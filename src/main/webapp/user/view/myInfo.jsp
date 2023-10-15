@@ -1,23 +1,27 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
-<%@ page import="user.UserDao"%>
-<%@ page import="user.UserDto"%>
-<jsp:useBean id="userDto" class="user.UserDto" />
-<jsp:useBean id="userDao" class="user.UserDao" />
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>내 정보 조회</title>
-</head> 
+<title>Dogether</title>
+<%@ include file="/header.jsp"%>
+<link rel="stylesheet" href="/Dogether/index.css">
+</head>
 <body>
+  <!-- Global Navigation Bar -->
+  <jsp:include page="/globalNavigationBar.jsp"></jsp:include>
+
+  <jsp:useBean id="userDao" class="user.UserDao" />
+  <jsp:useBean id="userDto" class="user.UserDto" />
+
   <%
   request.setCharacterEncoding("UTF-8");
-  String id = (String) session.getAttribute("sessionID");
-  if (id == null) {
+  String user_id = (String) session.getAttribute("sessionID");
+  if (user_id == null) {
       response.sendRedirect("login.jsp");
   } else {
       try {
-          userDto = userDao.getUser(id);
+          userDto = userDao.getUser(user_id);
           if (userDto != null) {
   %>
   <h2>내 정보 조회</h2>
@@ -59,8 +63,7 @@
   }
   %>
   <hr>
-
-  <input type="button" value="뒤로가기" onclick="location.href='../../index.jsp'">
-  <input type="button" value="회원탈퇴" onclick="location.href='resign.jsp'"/>
+  <input type="button" value="메인으로" onclick="location.href='/Dogether'">
+  <input type="button" value="회원탈퇴" onclick="location.href='resign.jsp'" />
 </body>
 </html>

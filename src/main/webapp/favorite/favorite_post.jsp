@@ -1,100 +1,199 @@
-<%@page import="favorite_post.*"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
-<%
-request.setCharacterEncoding("UTF-8");
-String cp = request.getContextPath();
-int totalRecord = 0;
-int numPerpage = 5;
-int totalPage = 0;
-int nowPage = 0;
-int beginPerPage = 0;
-int pagePerblock = 4;
-int totalBlock = 0;
-int nowBlock = 0;
-%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>게시판</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dogether</title>
+<%@ include file="/header.jsp"%>
+<link rel="stylesheet" href="favorite_post.css">
 </head>
 <body>
-  <br />
-  <br />
-  <table width="600" border="2" cellpadding="0" cellspacing="0" bordercolor="#d6d4a6" align="center">
-    <tr height="40">
-      <td style="padding-left: 20px;">
-        <b>관심목록</b>
-      </td>
-    </tr>
-  </table>
-  <br />
-  <br />
-  <table width="600" align="center">
-    <tr>
-      <td align="left" colspan="2" width="400">
-        Total
-        <%=totalRecord%>
-        <%=totalPage%>
-        pages / Now Page is
-        <%=nowPage%>
-      </td>
-      <td align="right" colspan="1" width="200"></td>
-    </tr>
-    <tr>
-      <td style="border-bottom: 2px solid #DBDBDB;" colspan="3"></td>
-    </tr>
-    <%
-    int newLine = 0;
-    int articleCount = 0;
-    int cnt = 0;
-    for (int i = beginPerPage; i < beginPerPage + numPerpage; i++) {
-        if (newLine == 0) {
-            out.print("<tr>");
-        }
-        newLine++;
-        articleCount++;
-    %>
-    <td align="center" width="190">
-      <a> <img alt="" src="" width="190" height="190"> <br>
-      </a>
-    </td>
-    <%
-    if (newLine == 3) {
-        out.print("</tr>");
-        newLine = 0;
-    }
-    }
-    while (newLine > 0 && newLine < 2) {
-    out.print("<td width='180'></td>");
-    newLine++;
-    }
-    out.print("</tr>");
-    %>
+  <!-- Global Navigation Bar -->
+  <jsp:include page="/globalNavigationBar.jsp"></jsp:include>
+  
+  <!-- Side Bar -->
+  <div class="mylist">
+    <h2>마이 페이지</h2>
+    <div class="list">
+      <h4>내 정보 수정</h4>
+      <h4>비밀번호 변경</h4>
+      <h4>관심 장소 모아보기</h4>
+      <h4 class="active">관심 글 모아보기</h4>
+      <h4>활동내역</h4>
+    </div>
+  </div>
 
-    <tr>
-      <td style="border-bottom: 2px solid #DBDBDB;" colspan="3"></td>
-    </tr>
-    <tr>
-      <td align="center" colspan="3">
-        <%
-        if (totalRecord != 0) {
-        %>
-        <%=nowPage%>
-        <%
-        }
-        %>
-        <%
-        if (totalRecord == 0) {
-        %>
-        등록된 파일이 없습니다
-        <%
-        }
-        %>
-      </td>
-    </tr>
-  </table>
-  <br />
-  <br />
+  <!-- Favorite Post -->
+  <div class="navout">
+    <div class="favotitle">관심 글 모아보기</div>
+    <div class="favocount">
+      내가 관심 표시한 게시글 <b>총 31개</b>
+    </div>
+
+    <div class="favolists">
+      <a href="#" class="card mb-3">
+        <div class="row g-0">
+          <div class="col-md-2">
+            <img src="./image/DownDog.jpg" class="img-fluid rounded-start" alt="...">
+          </div>
+          <div class="col-md-10">
+            <div class="card-body">
+              <h4 class="card-title">오늘 댕댕 카페 다녀왔는데...(3)</h4>
+              <p class="card-text">
+                닉네임닉네임닉네임<br>2023.10.05 | 조회수 : 1534585
+              </p>
+            </div>
+          </div>
+        </div>
+      </a> <a href="#" class="card mb-3">
+        <div class="row g-0">
+          <div class="col-md-2">
+            <img src="./image/DownDog.jpg" class="img-fluid rounded-start" alt="...">
+          </div>
+          <div class="col-md-10">
+            <div class="card-body">
+              <h4 class="card-title">오늘 댕댕 카페 다녀왔는데...(3)</h4>
+              <p class="card-text">
+                닉네임닉네임닉네임<br>2023.10.05 | 조회수 : 1534585
+              </p>
+            </div>
+          </div>
+        </div>
+      </a> <a href="#" class="card mb-3">
+        <div class="row g-0">
+          <div class="col-md-2">
+            <img src="./image/DownDog.jpg" class="img-fluid rounded-start" alt="...">
+          </div>
+          <div class="col-md-10">
+            <div class="card-body">
+              <h4 class="card-title">오늘 댕댕 카페 다녀왔는데...(3)</h4>
+              <p class="card-text">
+                닉네임닉네임닉네임<br>2023.10.05 | 조회수 : 1534585
+              </p>
+            </div>
+          </div>
+        </div>
+      </a> <a href="#" class="card mb-3">
+        <div class="row g-0">
+          <div class="col-md-2">
+            <img src="./image/DownDog.jpg" class="img-fluid rounded-start" alt="...">
+          </div>
+          <div class="col-md-10">
+            <div class="card-body">
+              <h4 class="card-title">오늘 댕댕 카페 다녀왔는데...(3)</h4>
+              <p class="card-text">
+                닉네임닉네임닉네임<br>2023.10.05 | 조회수 : 1534585
+              </p>
+            </div>
+          </div>
+        </div>
+      </a> <a href="#" class="card mb-3">
+        <div class="row g-0">
+          <div class="col-md-2">
+            <img src="./image/DownDog.jpg" class="img-fluid rounded-start" alt="...">
+          </div>
+          <div class="col-md-10">
+            <div class="card-body">
+              <h4 class="card-title">오늘 댕댕 카페 다녀왔는데...(3)</h4>
+              <p class="card-text">
+                닉네임닉네임닉네임<br>2023.10.05 | 조회수 : 1534585
+              </p>
+            </div>
+          </div>
+        </div>
+      </a> <a href="#" class="card mb-3">
+        <div class="row g-0">
+          <div class="col-md-2">
+            <img src="./image/DownDog.jpg" class="img-fluid rounded-start" alt="...">
+          </div>
+          <div class="col-md-10">
+            <div class="card-body">
+              <h4 class="card-title">오늘 댕댕 카페 다녀왔는데...(3)</h4>
+              <p class="card-text">
+                닉네임닉네임닉네임<br>2023.10.05 | 조회수 : 1534585
+              </p>
+            </div>
+          </div>
+        </div>
+      </a> <a href="#" class="card mb-3">
+        <div class="row g-0">
+          <div class="col-md-2">
+            <img src="./image/DownDog.jpg" class="img-fluid rounded-start" alt="...">
+          </div>
+          <div class="col-md-10">
+            <div class="card-body">
+              <h4 class="card-title">오늘 댕댕 카페 다녀왔는데...(3)</h4>
+              <p class="card-text">
+                닉네임닉네임닉네임<br>2023.10.05 | 조회수 : 1534585
+              </p>
+            </div>
+          </div>
+        </div>
+      </a> <a href="#" class="card mb-3">
+        <div class="row g-0">
+          <div class="col-md-2">
+            <img src="./image/DownDog.jpg" class="img-fluid rounded-start" alt="...">
+          </div>
+          <div class="col-md-10">
+            <div class="card-body">
+              <h4 class="card-title">오늘 댕댕 카페 다녀왔는데...(3)</h4>
+              <p class="card-text">
+                닉네임닉네임닉네임<br>2023.10.05 | 조회수 : 1534585
+              </p>
+            </div>
+          </div>
+        </div>
+      </a> <a href="#" class="card mb-3">
+        <div class="row g-0">
+          <div class="col-md-2">
+            <img src="./image/DownDog.jpg" class="img-fluid rounded-start" alt="...">
+          </div>
+          <div class="col-md-10">
+            <div class="card-body">
+              <h4 class="card-title">오늘 댕댕 카페 다녀왔는데...(3)</h4>
+              <p class="card-text">
+                닉네임닉네임닉네임<br>2023.10.05 | 조회수 : 1534585
+              </p>
+            </div>
+          </div>
+        </div>
+      </a> <a href="#" class="card mb-3">
+        <div class="row g-0">
+          <div class="col-md-2">
+            <img src="./image/DownDog.jpg" class="img-fluid rounded-start" alt="...">
+          </div>
+          <div class="col-md-10">
+            <div class="card-body">
+              <h4 class="card-title">오늘 댕댕 카페 다녀왔는데...(3)</h4>
+              <p class="card-text">
+                닉네임닉네임닉네임<br>2023.10.05 | 조회수 : 1534585
+              </p>
+            </div>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <!-- Paging -->
+    <nav aria-label="Page navigation example">
+      <ul class="pagination">
+        <li class="page-item"><a class="page-link" href="#" aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+        </a></li>
+        <li class="page-item active" aria-current="page"><a class="page-link" href="#">1</a></li>
+        <li class="page-item"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item"><a class="page-link" href="#">4</a></li>
+        <li class="page-item"><a class="page-link" href="#">5</a></li>
+        <li class="page-item"><a class="page-link" href="#">6</a></li>
+        <li class="page-item"><a class="page-link" href="#">7</a></li>
+        <li class="page-item"><a class="page-link" href="#">8</a></li>
+        <li class="page-item"><a class="page-link" href="#">9</a></li>
+        <li class="page-item"><a class="page-link" href="#">10</a></li>
+        <li class="page-item"><a class="page-link" href="#" aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+        </a></li>
+      </ul>
+    </nav>
+  </div>
 </body>
 </html>

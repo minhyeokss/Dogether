@@ -3,13 +3,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>로그아웃 처리</title>
+<title>Dogether</title>
 </head>
 <body>
   <%
-  session = request.getSession();
-  session.invalidate(); // 모든 세션 정보 삭제
-  response.sendRedirect("../../index.jsp");
+  session.invalidate();
+  response.sendRedirect("/Dogether");
   %>
 </body>
 </html>
