@@ -91,6 +91,4 @@ public class UserDto {
         this.user_grade = user_grade;
     }
 
-   
-
 }

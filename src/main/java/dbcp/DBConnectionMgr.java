@@ -1,25 +1,20 @@
 /**
  * Copyright(c) 2001 iSavvix Corporation (http://www.isavvix.com/)
  *
- *                        All rights reserved
+ * All rights reserved
  *
- * Permission to use, copy, modify and distribute this material for
- * any purpose and without fee is hereby granted, provided that the
- * above copyright notice and this permission notice appear in all
- * copies, and that the name of iSavvix Corporation not be used in
- * advertising or publicity pertaining to this material without the
- * specific, prior written permission of an authorized representative of
- * iSavvix Corporation.
+ * Permission to use, copy, modify and distribute this material for any purpose and without fee is
+ * hereby granted, provided that the above copyright notice and this permission notice appear in all
+ * copies, and that the name of iSavvix Corporation not be used in advertising or publicity
+ * pertaining to this material without the specific, prior written permission of an authorized
+ * representative of iSavvix Corporation.
  *
- * ISAVVIX CORPORATION MAKES NO REPRESENTATIONS AND EXTENDS NO WARRANTIES,
- * EXPRESS OR IMPLIED, WITH RESPECT TO THE SOFTWARE, INCLUDING, BUT
- * NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
- * FITNESS FOR ANY PARTICULAR PURPOSE, AND THE WARRANTY AGAINST
- * INFRINGEMENT OF PATENTS OR OTHER INTELLECTUAL PROPERTY RIGHTS.  THE
- * SOFTWARE IS PROVIDED "AS IS", AND IN NO EVENT SHALL ISAVVIX CORPORATION OR
- * ANY OF ITS AFFILIATES BE LIABLE FOR ANY DAMAGES, INCLUDING ANY
- * LOST PROFITS OR OTHER INCIDENTAL OR CONSEQUENTIAL DAMAGES RELATING
- * TO THE SOFTWARE.
+ * ISAVVIX CORPORATION MAKES NO REPRESENTATIONS AND EXTENDS NO WARRANTIES, EXPRESS OR IMPLIED, WITH
+ * RESPECT TO THE SOFTWARE, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY
+ * AND FITNESS FOR ANY PARTICULAR PURPOSE, AND THE WARRANTY AGAINST INFRINGEMENT OF PATENTS OR OTHER
+ * INTELLECTUAL PROPERTY RIGHTS. THE SOFTWARE IS PROVIDED "AS IS", AND IN NO EVENT SHALL ISAVVIX
+ * CORPORATION OR ANY OF ITS AFFILIATES BE LIABLE FOR ANY DAMAGES, INCLUDING ANY LOST PROFITS OR
+ * OTHER INCIDENTAL OR CONSEQUENTIAL DAMAGES RELATING TO THE SOFTWARE.
  *
  */
 
@@ -33,24 +28,22 @@ import java.util.Vector;
 /**
  * Manages a java.sql.Connection pool.
  *
- * @author  Anil Hemrajani
+ * @author Anil Hemrajani
  */
 public class DBConnectionMgr {
     private Vector connections = new Vector(10);
     private String _driver = "oracle.jdbc.driver.OracleDriver",
-    _url = "jdbc:oracle:thin:@localhost:1521:xe",
-    _user = "scott",
-    _password = "1111";
+            _url = "jdbc:oracle:thin:@localhost:1521:xe", _user = "scott", _password = "1111";
     private boolean _traceOn = false;
     private boolean initialized = false;
     private int _openConnections = 10;
     private static DBConnectionMgr instance = null;
 
-    public DBConnectionMgr() {
-    }
+    public DBConnectionMgr() {}
 
-    /** Use this method to set the maximum number of open connections before
-     unused connections are closed.
+    /**
+     * Use this method to set the maximum number of open connections before unused connections are
+     * closed.
      */
 
     public static DBConnectionMgr getInstance() {
@@ -82,8 +75,7 @@ public class DBConnectionMgr {
 
 
     /** Opens specified "count" of connections and adds them to the existing pool */
-    public synchronized void setInitOpenConnections(int count)
-            throws SQLException {
+    public synchronized void setInitOpenConnections(int count) throws SQLException {
         Connection c = null;
         ConnectionObject co = null;
 
@@ -92,7 +84,8 @@ public class DBConnectionMgr {
             co = new ConnectionObject(c, false);
 
             connections.addElement(co);
-            trace("ConnectionPoolManager: Adding new DB connection to pool (" + connections.size() + ")");
+            trace("ConnectionPoolManager: Adding new DB connection to pool (" + connections.size()
+                    + ")");
         }
     }
 
@@ -103,9 +96,8 @@ public class DBConnectionMgr {
     }
 
 
-    /** Returns an unused existing or new connection.  */
-    public synchronized Connection getConnection()
-            throws Exception {
+    /** Returns an unused existing or new connection. */
+    public synchronized Connection getConnection() throws Exception {
         if (!initialized) {
             Class c = Class.forName(_driver);
             DriverManager.registerDriver((Driver) c.newInstance());
@@ -184,8 +176,10 @@ public class DBConnectionMgr {
 
     public void freeConnection(Connection c, PreparedStatement p, ResultSet r) {
         try {
-            if (r != null) r.close();
-            if (p != null) p.close();
+            if (r != null)
+                r.close();
+            if (p != null)
+                p.close();
             freeConnection(c);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -194,8 +188,10 @@ public class DBConnectionMgr {
 
     public void freeConnection(Connection c, Statement s, ResultSet r) {
         try {
-            if (r != null) r.close();
-            if (s != null) s.close();
+            if (r != null)
+                r.close();
+            if (s != null)
+                s.close();
             freeConnection(c);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -204,7 +200,8 @@ public class DBConnectionMgr {
 
     public void freeConnection(Connection c, PreparedStatement p) {
         try {
-            if (p != null) p.close();
+            if (p != null)
+                p.close();
             freeConnection(c);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -213,7 +210,8 @@ public class DBConnectionMgr {
 
     public void freeConnection(Connection c, Statement s) {
         try {
-            if (s != null) s.close();
+            if (s != null)
+                s.close();
             freeConnection(c);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -244,8 +242,7 @@ public class DBConnectionMgr {
     }
 
 
-    private Connection createConnection()
-            throws SQLException {
+    private Connection createConnection() throws SQLException {
         Connection con = null;
 
         try {

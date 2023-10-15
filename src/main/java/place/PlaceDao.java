@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
 import java.util.Vector;
 
 import javax.naming.Context;
@@ -65,9 +64,9 @@ public class PlaceDao {
     }
 
     // place_cafe_list.jsp
-    public List getPlaceList(String place_category) {
-        String sql = "select * from tblplace where place_category=?";
-        Vector vector = new Vector();
+    public Vector<PlaceDto> getPlaceList(String place_category) {
+        String sql = "select * from tblplace where place_category=? order by place_id desc";
+        Vector<PlaceDto> vector = new Vector<PlaceDto>();
         try {
             conn = ds.getConnection();
             pstmt = conn.prepareStatement(sql);
