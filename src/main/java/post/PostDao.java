@@ -8,6 +8,7 @@ import javax.sql.DataSource;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
+import javax.servlet.http.Cookie;
 
 public class PostDao {
     /*
@@ -199,4 +200,33 @@ public class PostDao {
         }
     }
 
+    // 조회수 쿠키 확인
+    public Cookie checkCookie(Cookie[] cookies, int post_id) {
+        Cookie viewCookie = null;
+        if(cookies != null) {
+            for(int i=0; i<cookies.length; i++) {
+                if(cookies[i].getName().equals("|"+post_id+"|")) {
+                    viewCookie = cookies[i];
+                }
+            }
+        } else {
+            viewCookie = null;
+        }
+        return viewCookie;
+    }
+    
+    // 조회수 업데이트
+    public void viewsUpdate(int post_id) {
+        String sql = "UPDATE tblpost SET post_views = post_views + 1 WHERE post_id=?";
+        try {
+            conn = ds.getConnection();
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, post_id);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("viewsUpdate() : " + e);
+        } finally {
+            freeConnection();
+        }
+    }
 }
