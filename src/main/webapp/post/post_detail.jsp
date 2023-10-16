@@ -42,6 +42,20 @@
       <h1>후기 게시판</h1>
       <%
       int post_id = Integer.parseInt(request.getParameter("post_id"));
+      
+
+      // 조회수 업데이트
+      Cookie[] cookies = request.getCookies();
+      Cookie newCookie = postDao.checkCookie(cookies, post_id);
+      
+      if(newCookie == null || !newCookie.getName().equals("|"+post_id+"|")){
+          postDao.viewsUpdate(post_id);
+          
+          Cookie cookie = new Cookie("|"+post_id+"|", "views");
+          response.addCookie(cookie);
+      }
+      
+      // 글 내용 보여주기
       postDto = postDao.getPost(post_id);
       %>
       <div class="child_3">
