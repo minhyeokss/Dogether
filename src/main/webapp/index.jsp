@@ -1,6 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <!DOCTYPE html>
-<html lang="ko">
+<html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -71,10 +71,12 @@
       </div>
 
       <button class="carousel-control-prev" type="button" data-bs-target="#hero-carousel" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span> <span class="visually-hidden">Previous</span>
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
       </button>
       <button class="carousel-control-next" type="button" data-bs-target="#hero-carousel" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span> <span class="visually-hidden">Next</span>
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
       </button>
     </div>
 
@@ -299,25 +301,3 @@
 </footer>
 
 </html>
-<!--
-<html>
-<head>
-<meta charset="UTF-8">
-<title>index</title>
-</head>
-<body>
-<h1>메인화면</h1>
-<br><br>
-<input type="button" value="로그인" onclick="location.href='user/view/login.jsp'">
-<input type="button" value="회원가입" onclick="location.href='user/view/signUp.jsp'">
-<input type="button" value="비밀번호변경" onclick="location.href='user/view/changePw.jsp'">
-<input type="button" value="로그아웃" onclick="location.href='user/proc/logoutProc.jsp'"/>
-<input type="button" value="로그아웃" onclick="location.href='user/proc/logoutProc.jsp'"/><br>
-<input type="button" value="내 정보 조회" onclick="location.href='user/view/myInfo.jsp'"/>
-<form method="post" action="place/cafe/place_cafe_list.jsp">
-  <input type="hidden" name="p_category" value="cafe">
-  <input type="submit" value="카페">
-</form>
-</body>
-</html>
--->

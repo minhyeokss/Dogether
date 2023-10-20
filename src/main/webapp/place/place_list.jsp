@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
 <%@ page import="place.*"%>
 <!DOCTYPE html>
@@ -8,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Dogether</title>
 <%@ include file="/header.jsp"%>
-<link rel="stylesheet" href="place_cafe_list.css">
+<link rel="stylesheet" href="place_list.css">
 </head>
 <body>
   <!-- Global Navigation Bar -->
@@ -20,34 +21,53 @@
   <!-- Side Bar -->
   <div class="catewrap">
     <h2>장소 추천</h2>
-    <div class="cate">
-      <h4>
-        식당&nbsp;&nbsp;&nbsp;<span class="badge rounded-pill">256</span>
-      </h4>
-      <h4>
+    <div class="cate"><a href="/Dogether/place/place_list.jsp?place_category=restaurant">
+    <% String place_category = request.getParameter("place_category"); %>
+    <% if (place_category.equals("restaurant")) { %>
+      <h4 class="active"> <% } else { %>
+      <h4> <% } %>
+      식당&nbsp;&nbsp;&nbsp;<span class="badge rounded-pill">256</span>
+      </h4></a><a href="/Dogether/place/place_list.jsp?place_category=hospital">
+    <% if (place_category.equals("hospital")) { %>
+      <h4 class="active"> <% } else { %>
+      <h4> <% } %>
         병원&nbsp;&nbsp;&nbsp;<span class="badge rounded-pill">124</span>
-      </h4>
-      <h4 class="active">
+      </h4></a><a href="/Dogether/place/place_list.jsp?place_category=cafe">
+    <% if (place_category.equals("cafe")) { %>
+      <h4 class="active"> <% } else { %>
+      <h4> <% } %>
         카페&nbsp;&nbsp;&nbsp;<span class="badge rounded-pill">458</span>
-      </h4>
-      <h4>
+      </h4></a><a href="/Dogether/place/place_list.jsp?place_category=dogcafe">
+    <% if (place_category.equals("dogcafe")) { %>
+      <h4 class="active"> <% } else { %>
+      <h4> <% } %>
         애견카페&nbsp;&nbsp;&nbsp;<span class="badge rounded-pill">67</span>
-      </h4>
-      <h4>
+      </h4></a><a href="/Dogether/place/place_list.jsp?place_category=hotel">
+    <% if (place_category.equals("hotel")) { %>
+      <h4 class="active"> <% } else { %>
+      <h4> <% } %>
         숙소&nbsp;&nbsp;&nbsp;<span class="badge rounded-pill">54</span>
-      </h4>
-      <h4>
+      </h4></a><a href="/Dogether/place/place_list.jsp?place_category=school">
+    <% if (place_category.equals("school")) { %>
+      <h4 class="active"> <% } else { %>
+      <h4> <% } %>
         애견유치원&nbsp;&nbsp;&nbsp;<span class="badge rounded-pill">21</span>
-      </h4>
-      <h4>
+      </h4></a><a href="/Dogether/place/place_list.jsp?place_category=training">
+    <% if (place_category.equals("training")) { %>
+      <h4 class="active"> <% } else { %>
+      <h4> <% } %>
         훈련소&nbsp;&nbsp;&nbsp;<span class="badge rounded-pill">16</span>
-      </h4>
-      <h4>
+      </h4></a><a href="/Dogether/place/place_list.jsp?place_category=dogshop">
+    <% if (place_category.equals("dogshop")) { %>
+      <h4 class="active"> <% } else { %>
+      <h4> <% } %>
         애견용품점&nbsp;&nbsp;&nbsp;<span class="badge rounded-pill">59</span>
-      </h4>
-      <h4>
+      </h4></a><a href="/Dogether/place/place_list.jsp?place_category=playground">
+    <% if (place_category.equals("playground")) { %>
+      <h4 class="active"> <% } else { %>
+      <h4> <% } %>
         애견운동장/산책&nbsp;&nbsp;&nbsp;<span class="badge rounded-pill">227</span>
-      </h4>
+      </h4></a>
     </div>
   </div>
 
@@ -102,7 +122,7 @@
 
     <div class="results">
       <%
-      String place_category = request.getParameter("place_category");
+      
       Vector<PlaceDto> vector = placeDao.getPlaceList(place_category);
       int n = (vector.size() < 6) ? vector.size() : 6;
       if (n >= 1) {
@@ -111,7 +131,7 @@
           placeDto = vector.get(j + i * 2);
       %>
       <div class="cards">
-        <a href="place_cafe_detail.jsp?place_id=<%=placeDto.getPlace_id()%>" class="card mb-3" style="max-width: 600px; margin-top: 40px;">
+        <a href="place_detail.jsp?place_id=<%=placeDto.getPlace_id()%>" class="card mb-3" style="max-width: 600px; margin-top: 40px;">
           <div class="row g-0">
             <div class="col-md-4">
               <img src="./image/Cafe<%=j + i * 2 + 1%>.jpg" class="img-fluid rounded-start" alt="...">
