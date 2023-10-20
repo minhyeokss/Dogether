@@ -75,7 +75,7 @@ public class PlaceDao {
             while (rs.next()) {
                 PlaceDto placeDto = new PlaceDto();
                 placeDto.setPlace_name(rs.getString("place_name"));
-                placeDto.setPlace_category(rs.getString("place_category"));
+                placeDto.setPlace_category(place_category);
                 placeDto.setPlace_address(rs.getString("place_address"));
                 placeDto.setPlace_call(rs.getString("place_call"));
                 placeDto.setPlace_id(rs.getInt("place_id"));

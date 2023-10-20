@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
 <%@ page import="review.*"%>
 <!DOCTYPE html>
@@ -8,48 +9,71 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Dogether</title>
 <%@ include file="/header.jsp"%>
-<link rel="stylesheet" href="place_cafe_detail.css">
+<link rel="stylesheet" href="place_detail.css">
 </head>
 <body>
   <!-- Global Navigation Bar -->
   <jsp:include page="/globalNavigationBar.jsp"></jsp:include>
-  
+
   <jsp:useBean id="placeDao" class="place.PlaceDao" />
   <jsp:useBean id="placeDto" class="place.PlaceDto" />
   <jsp:useBean id="reviewDao" class="review.ReviewDao" />
   <jsp:useBean id="reviewDto" class="review.ReviewDto" />
   <jsp:useBean id="userDao" class="user.UserDao" />
   <jsp:useBean id="userDto" class="user.UserDto" />
+  <%
+  int place_id = Integer.parseInt(request.getParameter("place_id"));
+  placeDto = placeDao.readPlace(place_id);
+  String place_category = placeDto.getPlace_category();
+  %>
 
   <!-- Side Bar -->
   <div class="catewrap">
     <h2>장소 추천</h2>
     <div class="cate">
-      <h4>
-        식당&nbsp;&nbsp;&nbsp;<span class="badge rounded-pill">256</span>
+    <% if (place_category.equals("restaurant")) { %>
+      <h4 class="active"> <% } else { %>
+      <h4> <% } %>
+      식당&nbsp;&nbsp;&nbsp;<span class="badge rounded-pill">256</span>
       </h4>
-      <h4>
+    <% if (place_category.equals("hospital")) { %>
+      <h4 class="active"> <% } else { %>
+      <h4> <% } %>
         병원&nbsp;&nbsp;&nbsp;<span class="badge rounded-pill">124</span>
       </h4>
-      <h4 class="active">
+    <% if (place_category.equals("cafe")) { %>
+      <h4 class="active"> <% } else { %>
+      <h4> <% } %>
         카페&nbsp;&nbsp;&nbsp;<span class="badge rounded-pill">458</span>
       </h4>
-      <h4>
+    <% if (place_category.equals("dogcafe")) { %>
+      <h4 class="active"> <% } else { %>
+      <h4> <% } %>
         애견카페&nbsp;&nbsp;&nbsp;<span class="badge rounded-pill">67</span>
       </h4>
-      <h4>
+    <% if (place_category.equals("hotel")) { %>
+      <h4 class="active"> <% } else { %>
+      <h4> <% } %>
         숙소&nbsp;&nbsp;&nbsp;<span class="badge rounded-pill">54</span>
       </h4>
-      <h4>
+    <% if (place_category.equals("school")) { %>
+      <h4 class="active"> <% } else { %>
+      <h4> <% } %>
         애견유치원&nbsp;&nbsp;&nbsp;<span class="badge rounded-pill">21</span>
       </h4>
-      <h4>
+    <% if (place_category.equals("training")) { %>
+      <h4 class="active"> <% } else { %>
+      <h4> <% } %>
         훈련소&nbsp;&nbsp;&nbsp;<span class="badge rounded-pill">16</span>
       </h4>
-      <h4>
+    <% if (place_category.equals("dogshop")) { %>
+      <h4 class="active"> <% } else { %>
+      <h4> <% } %>
         애견용품점&nbsp;&nbsp;&nbsp;<span class="badge rounded-pill">59</span>
       </h4>
-      <h4>
+    <% if (place_category.equals("playground")) { %>
+      <h4 class="active"> <% } else { %>
+      <h4> <% } %>
         애견운동장/산책&nbsp;&nbsp;&nbsp;<span class="badge rounded-pill">227</span>
       </h4>
     </div>
@@ -82,10 +106,6 @@
   </div>
 
   <!-- Place Information -->
-  <%
-  int place_id = Integer.parseInt(request.getParameter("place_id"));
-  placeDto = placeDao.readPlace(place_id);
-  %>
   <div class="catetitle"><%=placeDto.getPlace_category()%></div>
   <br>
   <br>
@@ -122,7 +142,6 @@
   <!-- 리뷰 등록 -->
   <%
   String session_id = (String) session.getAttribute("sessionID");
-  System.out.println(session_id);
   userDto = userDao.getUser(session_id);
   %>
   <div>
