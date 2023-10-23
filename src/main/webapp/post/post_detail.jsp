@@ -1,6 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ page import="java.util.*"%>
-<%@ page import="user.*"%>
 <%@ page import="comment.*"%>
 <!DOCTYPE html>
 <html>
@@ -42,19 +41,19 @@
       <h1>후기 게시판</h1>
       <%
       int post_id = Integer.parseInt(request.getParameter("post_id"));
-      
+
 
       // 조회수 업데이트
       Cookie[] cookies = request.getCookies();
       Cookie newCookie = postDao.checkCookie(cookies, post_id);
-      
-      if(newCookie == null || !newCookie.getName().equals("|"+post_id+"|")){
+
+      if (newCookie == null || !newCookie.getName().equals("|" + post_id + "|")) {
           postDao.viewsUpdate(post_id);
-          
-          Cookie cookie = new Cookie("|"+post_id+"|", "views");
+
+          Cookie cookie = new Cookie("|" + post_id + "|", "views");
           response.addCookie(cookie);
       }
-      
+
       // 글 내용 보여주기
       postDto = postDao.getPost(post_id);
       %>
@@ -94,10 +93,21 @@
           <%
           }
           %>
-          <button type="submit" class="btn btn-secondary">
-            게시글 좋아요 <i class="fa-solid fa-heart" style="color: #ff000d;"></i>
-            <button type="submit" class="btn btn-secondary" onclick="location='post_list.jsp?board_id=<%=postDto.getBoard_id()%>'">목록</button>
-          </button>
+          <%
+          if (session_id != null) {
+          %>
+          <form method="post" action="../favoritePost/favorite_post_proc.jsp">
+            <input type="hidden" value="<%=postDto.getPost_id()%>" name="post_id" />
+            <input type="hidden" value="<%=postDto.getBoard_id()%>" name="board_id" />
+            <input type="hidden" value="<%=session_id%>" name="user_id" />
+            <button type="submit" class="btn btn-secondary">
+              게시글 좋아요 <i class="fa-solid fa-heart" style="color: #ff000d;"></i>
+            </button>
+          </form>
+          <%
+          }
+          %>
+          <button type="submit" class="btn btn-secondary" onclick="location='post_list.jsp?board_id=<%=postDto.getBoard_id()%>'">목록</button>
         </div>
       </div>
 
@@ -123,11 +133,9 @@
         <input type="hidden" value="<%=postDto.getPost_id()%>" name="post_id" />
         <input type="hidden" value="<%=postDto.getBoard_id()%>" name="board_id" />
         <input type="text" value="<%=userDto.getUser_nickname()%>" name="user_nickname" readonly />
-        <br>
-        <br>
+        <br> <br>
         <textarea rows="3" style="width: 50%;" name="comment_content" placeholder="댓글을 입력하세요."></textarea>
-        <br>
-        <br>
+        <br> <br>
         <input type="submit" value="댓글 달기" />
       </form>
       <br>
