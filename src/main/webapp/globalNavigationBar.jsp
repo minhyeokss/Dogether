@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ page contentType="text/html; charset=UTF-8"%>
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
     <a class="navbar-brand" href="/Dogether">Dogether</a>
@@ -9,15 +9,15 @@
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item dropdown-center"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">장소</a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="/Dogether/place/place_list.jsp?place_category=restaurant">식당</a></li>
-            <li><a class="dropdown-item" href="/Dogether/place/place_list.jsp?place_category=hospital">병원</a></li>
-            <li><a class="dropdown-item" href="/Dogether/place/place_list.jsp?place_category=cafe">카페</a></li>
-            <li><a class="dropdown-item" href="/Dogether/place/place_list.jsp?place_category=dogcafe">애견카페</a></li>
-            <li><a class="dropdown-item" href="/Dogether/place/place_list.jsp?place_category=hotel">숙소</a></li>
-            <li><a class="dropdown-item" href="/Dogether/place/place_list.jsp?place_category=school">애견유치원</a></li>
-            <li><a class="dropdown-item" href="/Dogether/place/place_list.jsp?place_category=training">훈련소</a></li>
-            <li><a class="dropdown-item" href="/Dogether/place/place_list.jsp?place_category=dogshop">애견용품점</a></li>
-            <li><a class="dropdown-item" href="/Dogether/place/place_list.jsp?place_category=playground">애견운동장/산책</a></li>
+            <li><a class="dropdown-item" href="/Dogether/place/place_list.jsp?place_category=restaurant&nowPage=0&nowBlock=0">식당</a></li>
+            <li><a class="dropdown-item" href="/Dogether/place/place_list.jsp?place_category=hospital&nowPage=0&nowBlock=0">병원</a></li>
+            <li><a class="dropdown-item" href="/Dogether/place/place_list.jsp?place_category=cafe&nowPage=0&nowBlock=0">카페</a></li>
+            <li><a class="dropdown-item" href="/Dogether/place/place_list.jsp?place_category=dogcafe&nowPage=0&nowBlock=0">애견카페</a></li>
+            <li><a class="dropdown-item" href="/Dogether/place/place_list.jsp?place_category=hotel&nowPage=0&nowBlock=0">숙소</a></li>
+            <li><a class="dropdown-item" href="/Dogether/place/place_list.jsp?place_category=school&nowPage=0&nowBlock=0">애견유치원</a></li>
+            <li><a class="dropdown-item" href="/Dogether/place/place_list.jsp?place_category=training&nowPage=0&nowBlock=0">훈련소</a></li>
+            <li><a class="dropdown-item" href="/Dogether/place/place_list.jsp?place_category=dogshop&nowPage=0&nowBlock=0">애견용품점</a></li>
+            <li><a class="dropdown-item" href="/Dogether/place/place_list.jsp?place_category=playground&nowPage=0&nowBlock=0">애견운동장/산책</a></li>
           </ul></li>
 
         <li class="nav-item dropdown-center"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">커뮤니티</a>

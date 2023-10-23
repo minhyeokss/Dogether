@@ -2,6 +2,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
 <%@ page import="place.*"%>
+<%!int totalRecord = 0; // 총 글의 갯수
+    int numPerPage = 2; // 한 페이지 당 보여질 글 갯수
+    int totalPage = 0; // 총 페이지 수
+    int nowPage = 0; // 현재 페이지
+    int beginPerPage = 0; // 페이지별 시작 번호
+    int pagePerBlock = 2; // 블럭 당 페이지 수
+    int totalBlock = 0; // 총 블럭 수
+    int nowBlock = 0; // 현재 블럭%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,59 +25,14 @@
 
   <jsp:useBean id="placeDao" class="place.PlaceDao" />
   <jsp:useBean id="placeDto" class="place.PlaceDto" />
+  <%
+  String place_category = request.getParameter("place_category");
+  %>
 
   <!-- Side Bar -->
-  <div class="catewrap">
-    <h2>장소 추천</h2>
-    <div class="cate"><a href="/Dogether/place/place_list.jsp?place_category=restaurant">
-    <% String place_category = request.getParameter("place_category"); %>
-    <% if (place_category.equals("restaurant")) { %>
-      <h4 class="active"> <% } else { %>
-      <h4> <% } %>
-      식당&nbsp;&nbsp;&nbsp;<span class="badge rounded-pill">256</span>
-      </h4></a><a href="/Dogether/place/place_list.jsp?place_category=hospital">
-    <% if (place_category.equals("hospital")) { %>
-      <h4 class="active"> <% } else { %>
-      <h4> <% } %>
-        병원&nbsp;&nbsp;&nbsp;<span class="badge rounded-pill">124</span>
-      </h4></a><a href="/Dogether/place/place_list.jsp?place_category=cafe">
-    <% if (place_category.equals("cafe")) { %>
-      <h4 class="active"> <% } else { %>
-      <h4> <% } %>
-        카페&nbsp;&nbsp;&nbsp;<span class="badge rounded-pill">458</span>
-      </h4></a><a href="/Dogether/place/place_list.jsp?place_category=dogcafe">
-    <% if (place_category.equals("dogcafe")) { %>
-      <h4 class="active"> <% } else { %>
-      <h4> <% } %>
-        애견카페&nbsp;&nbsp;&nbsp;<span class="badge rounded-pill">67</span>
-      </h4></a><a href="/Dogether/place/place_list.jsp?place_category=hotel">
-    <% if (place_category.equals("hotel")) { %>
-      <h4 class="active"> <% } else { %>
-      <h4> <% } %>
-        숙소&nbsp;&nbsp;&nbsp;<span class="badge rounded-pill">54</span>
-      </h4></a><a href="/Dogether/place/place_list.jsp?place_category=school">
-    <% if (place_category.equals("school")) { %>
-      <h4 class="active"> <% } else { %>
-      <h4> <% } %>
-        애견유치원&nbsp;&nbsp;&nbsp;<span class="badge rounded-pill">21</span>
-      </h4></a><a href="/Dogether/place/place_list.jsp?place_category=training">
-    <% if (place_category.equals("training")) { %>
-      <h4 class="active"> <% } else { %>
-      <h4> <% } %>
-        훈련소&nbsp;&nbsp;&nbsp;<span class="badge rounded-pill">16</span>
-      </h4></a><a href="/Dogether/place/place_list.jsp?place_category=dogshop">
-    <% if (place_category.equals("dogshop")) { %>
-      <h4 class="active"> <% } else { %>
-      <h4> <% } %>
-        애견용품점&nbsp;&nbsp;&nbsp;<span class="badge rounded-pill">59</span>
-      </h4></a><a href="/Dogether/place/place_list.jsp?place_category=playground">
-    <% if (place_category.equals("playground")) { %>
-      <h4 class="active"> <% } else { %>
-      <h4> <% } %>
-        애견운동장/산책&nbsp;&nbsp;&nbsp;<span class="badge rounded-pill">227</span>
-      </h4></a>
-    </div>
-  </div>
+  <jsp:include page="/place/placeSideBar.jsp">
+    <jsp:param name="place_category" value="<%=place_category%>"></jsp:param>
+  </jsp:include>
 
   <!-- Filter -->
   <div class="checkwrap">
@@ -122,19 +85,30 @@
 
     <div class="results">
       <%
-      
       Vector<PlaceDto> vector = placeDao.getPlaceList(place_category);
-      int n = (vector.size() < 6) ? vector.size() : 6;
-      if (n >= 1) {
-          for (int i = 0; i < ((n / 2.0 < 3.0) ? Math.ceil(n / 2.0) : 3); i++) {
-              for (int j = 0; j < ((n - i * 2) < 2 ? (n - i * 2) : 2); j++) {
-          placeDto = vector.get(j + i * 2);
+      totalRecord = vector.size();
+      totalPage = (int) Math.ceil((double) totalRecord / numPerPage);
+
+      if (request.getParameter("nowPage") != null) {
+          nowPage = Integer.parseInt(request.getParameter("nowPage"));
+      }
+      if (request.getParameter("nowBlock") != null) {
+          nowBlock = Integer.parseInt(request.getParameter("nowBlock"));
+      }
+      beginPerPage = nowPage * numPerPage;
+      totalBlock = (int) Math.ceil((double) totalPage / pagePerBlock);
+
+      for (int i = beginPerPage; i < beginPerPage + numPerPage; i++) {
+          if (i == totalRecord) {
+              break;
+          }
+          placeDto = vector.get(i);
       %>
       <div class="cards">
         <a href="place_detail.jsp?place_id=<%=placeDto.getPlace_id()%>" class="card mb-3" style="max-width: 600px; margin-top: 40px;">
           <div class="row g-0">
             <div class="col-md-4">
-              <img src="./image/Cafe<%=j + i * 2 + 1%>.jpg" class="img-fluid rounded-start" alt="...">
+              <img src="./image/Cafe<%=i + 1%>.jpg" class="img-fluid rounded-start" alt="...">
             </div>
             <div class="col-md-8">
               <div class="card-body">
@@ -151,28 +125,46 @@
       </div>
       <%
       }
-      }
-      }
       %>
     </div>
 
     <!-- Paging -->
     <nav aria-label="Page navigation example">
       <ul class="pagination">
+        <!--
         <li class="page-item"><a class="page-link" href="#" aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
         </a></li>
-        <li class="page-item active" aria-current="page"><a class="page-link" href="#">1</a></li>
-        <li class="page-item"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item"><a class="page-link" href="#">4</a></li>
-        <li class="page-item"><a class="page-link" href="#">5</a></li>
-        <li class="page-item"><a class="page-link" href="#">6</a></li>
-        <li class="page-item"><a class="page-link" href="#">7</a></li>
-        <li class="page-item"><a class="page-link" href="#">8</a></li>
-        <li class="page-item"><a class="page-link" href="#">9</a></li>
-        <li class="page-item"><a class="page-link" href="#">10</a></li>
+        -->
+        <%
+
+        %>
+        <%
+        if (nowBlock > 0) {
+        %>
+        <button type="button" class="btn btn-light" onclick="location.href='place_list.jsp?place_category=<%=place_category%>&nowPage=<%=(pagePerBlock * nowBlock) - 1%>&nowBlock=<%=nowBlock - 1%>'">
+          <i class="fa-solid fa-angle-left"></i>
+        </button>
+        <%
+        }
+        for (int i = 0; i < pagePerBlock; i++) {
+        if ((nowBlock * pagePerBlock) + i == totalPage)
+            break;
+        %>
+        <li class="page-item <% if ((nowPage - (nowBlock * pagePerBlock)) == i) { %>active<% } %>" aria-current="page"><a class="page-link" href="place_list.jsp?place_category=<%=place_category%>&nowPage=<%=(nowBlock * pagePerBlock) + i%>&nowBlock=<%=nowBlock%>"><%=(nowBlock * pagePerBlock) + 1 + i%></a></li>
+        <%
+        }
+        if (nowBlock + 1 < totalBlock) {
+        %>
+        <button type="button" class="btn btn-light" onclick="location.href='place_list.jsp?place_category=<%=place_category%>&nowPage=<%=pagePerBlock * (nowBlock + 1)%>&nowBlock=<%=nowBlock + 1%>'">
+          <i class="fa-solid fa-angle-right"></i>
+        </button>
+        <%
+        }
+        %>
+        <!--
         <li class="page-item"><a class="page-link" href="#" aria-label="Next"> <span aria-hidden="true">&raquo;</span>
         </a></li>
+        -->
       </ul>
     </nav>
   </div>

@@ -12,6 +12,7 @@
 <link rel="stylesheet" href="place_detail.css">
 </head>
 <body>
+
   <!-- Global Navigation Bar -->
   <jsp:include page="/globalNavigationBar.jsp"></jsp:include>
 
@@ -28,61 +29,14 @@
   %>
 
   <!-- Side Bar -->
-  <div class="catewrap">
-    <h2>장소 추천</h2>
-    <div class="cate">
-    <% if (place_category.equals("restaurant")) { %>
-      <h4 class="active"> <% } else { %>
-      <h4> <% } %>
-      식당&nbsp;&nbsp;&nbsp;<span class="badge rounded-pill">256</span>
-      </h4>
-    <% if (place_category.equals("hospital")) { %>
-      <h4 class="active"> <% } else { %>
-      <h4> <% } %>
-        병원&nbsp;&nbsp;&nbsp;<span class="badge rounded-pill">124</span>
-      </h4>
-    <% if (place_category.equals("cafe")) { %>
-      <h4 class="active"> <% } else { %>
-      <h4> <% } %>
-        카페&nbsp;&nbsp;&nbsp;<span class="badge rounded-pill">458</span>
-      </h4>
-    <% if (place_category.equals("dogcafe")) { %>
-      <h4 class="active"> <% } else { %>
-      <h4> <% } %>
-        애견카페&nbsp;&nbsp;&nbsp;<span class="badge rounded-pill">67</span>
-      </h4>
-    <% if (place_category.equals("hotel")) { %>
-      <h4 class="active"> <% } else { %>
-      <h4> <% } %>
-        숙소&nbsp;&nbsp;&nbsp;<span class="badge rounded-pill">54</span>
-      </h4>
-    <% if (place_category.equals("school")) { %>
-      <h4 class="active"> <% } else { %>
-      <h4> <% } %>
-        애견유치원&nbsp;&nbsp;&nbsp;<span class="badge rounded-pill">21</span>
-      </h4>
-    <% if (place_category.equals("training")) { %>
-      <h4 class="active"> <% } else { %>
-      <h4> <% } %>
-        훈련소&nbsp;&nbsp;&nbsp;<span class="badge rounded-pill">16</span>
-      </h4>
-    <% if (place_category.equals("dogshop")) { %>
-      <h4 class="active"> <% } else { %>
-      <h4> <% } %>
-        애견용품점&nbsp;&nbsp;&nbsp;<span class="badge rounded-pill">59</span>
-      </h4>
-    <% if (place_category.equals("playground")) { %>
-      <h4 class="active"> <% } else { %>
-      <h4> <% } %>
-        애견운동장/산책&nbsp;&nbsp;&nbsp;<span class="badge rounded-pill">227</span>
-      </h4>
-    </div>
-  </div>
+  <jsp:include page="/place/placeSideBar.jsp">
+    <jsp:param name="place_category" value="<%=place_category%>"></jsp:param>
+  </jsp:include>
 
   <!-- Image Carousel -->
   <div id="carouselExampleIndicators" class="carousel slide">
     <div class="carousel-indicators">
-      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" aria-label="Slide 1" class="active" aria-current="true"></button>
       <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
       <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
     </div>
@@ -98,10 +52,12 @@
       </div>
     </div>
     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span> <span class="visually-hidden">Previous</span>
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
     </button>
     <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span> <span class="visually-hidden">Next</span>
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
     </button>
   </div>
 

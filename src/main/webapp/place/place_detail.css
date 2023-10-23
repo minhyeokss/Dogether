@@ -69,12 +69,17 @@ nav.bg-body-tertiary{
 
 .catewrap h2{
     text-align:center;
-    padding-top:20px;
+    margin-top:20px;
 }
 
 .catewrap .cate h4{
     margin-top:50px;
     margin-left:10px;
+}
+
+.catewrap a {
+    text-decoration: none;
+    color:#212529;
 }
 
 .catewrap .cate h4:hover{
