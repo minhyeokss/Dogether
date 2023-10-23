@@ -59,6 +59,8 @@ nav.bg-body-tertiary{
     height:1570px;
     background-color: #e7f4ff;
     float:left;
+    position:relative;
+    z-index:1;
 }
 
 .catewrap h2{
@@ -69,6 +71,11 @@ nav.bg-body-tertiary{
 .catewrap .cate h4{
     margin-top:50px;
     margin-left:10px;
+}
+
+.catewrap a {
+    text-decoration: none;
+    color:#212529;
 }
 
 .catewrap .cate h4:hover{
