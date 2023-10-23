@@ -3,11 +3,11 @@
 <%@ page import="java.util.*"%>
 <%@ page import="place.*"%>
 <%!int totalRecord = 0; // 총 글의 갯수
-    int numPerPage = 2; // 한 페이지 당 보여질 글 갯수
+    int numPerPage = 8; // 한 페이지 당 보여질 글 갯수
     int totalPage = 0; // 총 페이지 수
     int nowPage = 0; // 현재 페이지
     int beginPerPage = 0; // 페이지별 시작 번호
-    int pagePerBlock = 2; // 블럭 당 페이지 수
+    int pagePerBlock = 5; // 블럭 당 페이지 수
     int totalBlock = 0; // 총 블럭 수
     int nowBlock = 0; // 현재 블럭%>
 <!DOCTYPE html>
@@ -108,7 +108,7 @@
         <a href="place_detail.jsp?place_id=<%=placeDto.getPlace_id()%>" class="card mb-3" style="max-width: 600px; margin-top: 40px;">
           <div class="row g-0">
             <div class="col-md-4">
-              <img src="./image/Cafe<%=i + 1%>.jpg" class="img-fluid rounded-start" alt="...">
+              <img src="./image/Cafe<%=(i + 1) % 6 + 1%>.jpg" class="img-fluid rounded-start" alt="...">
             </div>
             <div class="col-md-8">
               <div class="card-body">
