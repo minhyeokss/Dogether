@@ -1,17 +1,17 @@
 package favoritepost;
 
 public class FavoritePostDto {
-    private int favotirepost_id;
+    private int favoritepost_id;
     private String user_id;
     private int post_id;
     private int board_id;
 
-    public int getFavotirepost_id() {
-        return favotirepost_id;
+    public int getFavoritepost_id() {
+        return favoritepost_id;
     }
 
-    public void setFavotirepost_id(int favotirepost_id) {
-        this.favotirepost_id = favotirepost_id;
+    public void setFavoritepost_id(int favoritepost_id) {
+        this.favoritepost_id = favoritepost_id;
     }
 
     public String getUser_id() {

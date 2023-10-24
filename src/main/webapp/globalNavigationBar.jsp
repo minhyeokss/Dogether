@@ -32,9 +32,9 @@
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="/Dogether/user/view/myInfo.jsp">내정보 수정</a></li>
             <li><a class="dropdown-item" href="/Dogether/user/view/changePw.jsp">비밀번호 변경</a></li>
-            <li><a class="dropdown-item" href="/Dogether/favoritePost/favorite_place.jsp">관심장소 모아보기</a></li>
+            <li><a class="dropdown-item" href="/Dogether/favoritePlace/favorite_place.jsp">관심장소 모아보기</a></li>
             <li><a class="dropdown-item" href="/Dogether/favoritePost/favorite_post.jsp">관심글 모아보기</a></li>
-            <li><a class="dropdown-item" href="#">활동내역</a></li>
+            <li><a class="dropdown-item" href="/Dogether/myHistory/my_history.jsp">활동내역</a></li>
           </ul></li>
       </ul>
 

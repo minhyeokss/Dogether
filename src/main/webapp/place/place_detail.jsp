@@ -26,6 +26,7 @@
   int place_id = Integer.parseInt(request.getParameter("place_id"));
   placeDto = placeDao.readPlace(place_id);
   String place_category = placeDto.getPlace_category();
+  String session_id = (String) session.getAttribute("sessionID");
   %>
 
   <!-- Side Bar -->
@@ -94,10 +95,17 @@
   </div>
   <br>
   <br>
+  <form method="post" action="../favoritePlace/favorite_place_proc.jsp">
+    <input type="hidden" value="<%=placeDto.getPlace_id()%>" name="place_id" />
+    <input type="hidden" value="<%=session_id%>" name="user_id" />
+    <input type="hidden" value="<%=place_category%>" name="place_category" />
+    <button type="submit" class="btn btn-secondary">
+      게시글 좋아요 <i class="fa-solid fa-heart" style="color: #ff000d;"></i>
+    </button>
+  </form>
 
   <!-- 리뷰 등록 -->
   <%
-  String session_id = (String) session.getAttribute("sessionID");
   userDto = userDao.getUser(session_id);
   %>
   <div>
