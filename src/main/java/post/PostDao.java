@@ -203,9 +203,9 @@ public class PostDao {
     // 조회수 쿠키 확인
     public Cookie checkCookie(Cookie[] cookies, int post_id) {
         Cookie viewCookie = null;
-        if(cookies != null) {
-            for(int i=0; i<cookies.length; i++) {
-                if(cookies[i].getName().equals("|"+post_id+"|")) {
+        if (cookies != null) {
+            for (int i = 0; i < cookies.length; i++) {
+                if (cookies[i].getName().equals("|" + post_id + "|")) {
                     viewCookie = cookies[i];
                 }
             }
@@ -214,7 +214,7 @@ public class PostDao {
         }
         return viewCookie;
     }
-    
+
     // 조회수 업데이트
     public void viewsUpdate(int post_id) {
         String sql = "UPDATE tblpost SET post_views = post_views + 1 WHERE post_id=?";
@@ -229,4 +229,33 @@ public class PostDao {
             freeConnection();
         }
     }
+
+    public Vector<PostDto> getMyHistory(String user_id) {
+        // Board ID 설정 바꾸기 후기게시판 board_id =2 로 임시지정
+        String sql = "SELECT * FROM tblpost WHERE user_id=? ORDER BY post_id desc";
+        Vector<PostDto> vector = new Vector<PostDto>();
+        try {
+            conn = ds.getConnection();
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, user_id);
+            rs = pstmt.executeQuery();
+            while (rs.next()) {
+                PostDto postDto = new PostDto();
+                postDto.setPost_id(rs.getInt("post_id"));
+                postDto.setUser_id(rs.getString("user_id"));
+                postDto.setUser_nickname(rs.getString("user_nickname"));
+                postDto.setPost_title(rs.getString("post_title"));
+                postDto.setPost_content(rs.getString("post_content"));
+                postDto.setPost_create_date(rs.getDate("post_create_date"));
+                postDto.setPost_views(rs.getInt("post_views"));
+                vector.add(postDto);
+            }
+        } catch (Exception e) {
+            System.out.println("getMyHistory() : " + e);
+        } finally {
+            freeConnection();
+        }
+        return vector;
+    }
+
 }

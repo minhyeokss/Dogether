@@ -16,13 +16,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Dogether</title>
 <%@ include file="/header.jsp"%>
-<link rel="stylesheet" href="favorite_post.css">
+<link rel="stylesheet" href="my_history.css">
 </head>
 <body>
   <!-- Global Navigation Bar -->
   <jsp:include page="/globalNavigationBar.jsp"></jsp:include>
 
-  <jsp:useBean id="favoritePostDao" class="favoritepost.FavoritePostDao" />
+  <jsp:useBean id="postDao" class="post.PostDao" />
   <jsp:useBean id="postDto" class="post.PostDto" />
 
   <%
@@ -36,21 +36,21 @@
       <a href="/Dogether/user/view/myInfo.jsp"><h4>내 정보 수정</h4></a>
       <a href="/Dogether/user/view/changePw.jsp"><h4>비밀번호 변경</h4></a>
       <a href="/Dogether/favoritePlace/favorite_place.jsp"><h4>관심 장소 모아보기</h4></a>
-      <a href="/Dogether/favoritePost/favorite_post.jsp"><h4 class="active">관심 글 모아보기</h4></a>
-      <a href="/Dogether/myHistory/my_history.jsp"><h4>활동 내역</h4></a>
+      <a href="/Dogether/favoritePost/favorite_post.jsp"><h4>관심 글 모아보기</h4></a>
+      <a href="/Dogether/myHistory/my_history.jsp"><h4 class="active">활동 내역</h4></a>
     </div>
   </div>
 
   <!-- Favorite Post -->
   <div class="navout">
-    <div class="favotitle">관심 글 모아보기</div>
+    <div class="favotitle">활동 내역</div>
     <div class="favocount">
-      내가 관심 표시한 게시글 <b>총 31개</b>
+      내가 작성한 게시글 <b>총 31개</b>
     </div>
     <div class="favolists">
       <%
       String session_id = (String) session.getAttribute("sessionID");
-      Vector<PostDto> vector = favoritePostDao.getFavoritePostList(session_id);
+      Vector<PostDto> vector = postDao.getMyHistory(session_id);
 
       totalRecord = vector.size();
       totalPage = (int) Math.ceil((double) totalRecord / numPerPage);
