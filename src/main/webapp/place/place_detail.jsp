@@ -83,11 +83,11 @@
     <div class="phone text">
       <i class="fa-solid fa-phone"></i><%=placeDto.getPlace_call()%>
     </div>
-    <div class="location text">
+    <div class="location text" id="address">
       <i class="fa-solid fa-location-dot"></i><%=placeDto.getPlace_address()%>
     </div>
     <div class="house text">
-      <i class="fa-solid fa-house"></i> <a href="https://uhyagazapetcafe.modoo.at/"><%=placeDto.getPlace_homepage()%></a>
+      <i class="fa-solid fa-house"></i> <a href="https://www.instagram.com/bongbrothers89"><%=placeDto.getPlace_homepage()%></a>
     </div>
     <div class="tag text">
       <i class="fa-solid fa-tag"></i>#주차장 #실내 #토요일 영업 #일요일 영업 #소형견 #중형견
@@ -148,6 +148,44 @@
   %>
   <br>
   <br>
-  <img class="mapimage" src="./image/Capture.png" alt="">
+  <div class="mapimage" id="map" alt=""></div>
+  <div id="clickLatlng"></div>
+  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8c9c68e98759d45cc3cec760b2adf116&libraries=services"></script>
+  <script>
+  var mapContainer = document.getElementById('map'),
+  mapOption = {
+      center: new kakao.maps.LatLng(37.0, 126.570667),
+      level: 3
+  };
+  var address = document.getElementById('address').innerText;
+  console.log(address);
+  var map = new kakao.maps.Map(mapContainer, mapOption);
+  
+  var geocoder = new kakao.maps.services.Geocoder();
+  
+  geocoder.addressSearch(address, function(result, status) {
+      console.log(result, status);
+      
+      if (status === kakao.maps.services.Status.OK) {
+          var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+          var message = 'latlng : new kakao.maps.LatLng(' + result[0].y + ', ';
+          message += result[0].x + ')'
+          
+          var resultDiv = document.getElementById('clickLatlng');
+          resultDiv.innerHTML = message;
+          
+          var marker = new kakao.maps.Marker({
+              map: map,
+              position: coords
+          });
+          var infowindow = new kakao.maps.InfoWindow({
+              content: '<div style="width:150px;text-align:center;padding:6px 0;">우리회사</div>'
+          });
+          infowindow.open(map, marker);
+          
+          map.setCenter(coords);
+      }
+  });
+  </script>
 </body>
 </html>

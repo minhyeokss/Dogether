@@ -233,7 +233,15 @@ nav.bg-body-tertiary{
 }
 
 img.mapimage{
-    margin-left:250px;
+    margin-left:100px;
+    margin-top:80px;
+    margin-bottom:100px;
+    width:1100px;
+    height:600px;
+}
+
+div.mapimage{
+    margin-left:350px;
     margin-top:80px;
     margin-bottom:100px;
     width:1100px;
